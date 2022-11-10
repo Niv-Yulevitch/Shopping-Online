@@ -1,0 +1,23 @@
+<div>
+    <form (ngSubmit)="send()" [noValidate]="false">
+        <label>בחר אזור: </label>
+        <select name="areaId" [(ngModel)]="site.areaId" required>
+            <option value="" disabled selected>בחר...</option>
+            <option *ngFor="let a of areas" [value]="a._id">{{a.areaName}}</option>
+        </select>
+
+        <label>שם האתר: </label>
+        <input type="text" name="siteName" [(ngModel)]="site.siteName" required minlength="2" maxlength="20">
+
+        <label>תיאור: </label>
+        <input type="text" name="description" [(ngModel)]="site.description" required minlength="5" maxlength="1000">
+
+        <label>מחיר למבוגר: </label>
+        <input type="number" step="0.01" name="adultPrice" [(ngModel)]="site.adultPrice" required min="0" max="1000">
+
+        <label>מחיר לילד: </label>
+        <input type="number" step="0.01" name="childPrice" [(ngModel)]="site.childPrice" required min="0" max="1000">
+
+        <button>הוספה</button>
+    </form>
+</div>
