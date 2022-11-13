@@ -6,7 +6,7 @@ import productsLogic from "../5-logic/products-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/categories/
+// GET http://localhost:3001/api/categories
 router.get("/categories", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const categories = await productsLogic.getAllCategories();
@@ -16,7 +16,7 @@ router.get("/categories", verifyLoggedIn, async (request: Request, response: Res
     }
 });
 
-// GET http://localhost:3001/api/products/
+// GET http://localhost:3001/api/products
 router.get("/products", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const products = await productsLogic.getAllProducts();

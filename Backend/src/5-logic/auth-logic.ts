@@ -41,7 +41,7 @@ async function login(credentials: ICredentialsModel): Promise<string> {
     credentials.password = hash(credentials.password);
 
     //* Get users from database:
-    const users = UserModel.find({ username: credentials.username, password: credentials.password }).exec();
+    const users = await UserModel.find({ username: credentials.username, password: credentials.password }).exec();
     const user = users[0];
 
     //* If no such user exists:

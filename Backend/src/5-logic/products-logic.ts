@@ -22,7 +22,7 @@ async function getAllCategories(): Promise<ICategoryModel[]> {
 
 //* Used to get old imageName for updating product:
 async function getOneProduct(_id: string): Promise<IProductModel> {
-    const product = await (await ProductModel.findById(_id)).populated("category").exec();
+    const product = await ProductModel.findById(_id).populate("category").exec();
     if (!product) throw new IdNotFoundError(_id);
     return product;
 };

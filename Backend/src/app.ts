@@ -32,7 +32,7 @@ server.use(expressFileUpload());
 server.use("/api/auth", authController);
 server.use("/api/", cartItemsController);
 server.use("/api/", cartsController);
-server.use("/api/orders", ordersController);
+server.use("/api/", ordersController);
 server.use("/api/", productsController);
 server.use('/', imagesController)
 
