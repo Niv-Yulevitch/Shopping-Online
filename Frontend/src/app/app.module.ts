@@ -5,11 +5,17 @@ import { LayoutComponent } from './components/layout-area/layout/layout.componen
 import { HeaderComponent } from './components/layout-area/header/header.component';
 import { MenuComponent } from './components/layout-area/menu/menu.component';
 import { HomeComponent } from './components/home-area/home/home.component';
-import { AddDataComponent } from './components/data-area/add-data/add-data.component';
-import { ListDataComponent } from './components/data-area/list-data/list-data.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './components/layout-area/page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/layout-area/footer/footer.component';
+import { AuthMenuComponent } from './components/auth-area/auth-menu/auth-menu.component';
+import { LogoutComponent } from './components/auth-area/logout/logout.component';
+import { AboutComponent } from './components/home-area/about/about.component';
+import { ShoppingInfoComponent } from './components/home-area/shopping-info/shopping-info.component';
+import { LoginComponent } from './components/auth-area/login/login.component';
+import { RegisterComponent } from './components/auth-area/register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,15 +23,21 @@ import { PageNotFoundComponent } from './components/layout-area/page-not-found/p
     HeaderComponent,
     MenuComponent,
     HomeComponent,
-    AddDataComponent,
-    ListDataComponent,
-    PageNotFoundComponent
+    FooterComponent,
+    PageNotFoundComponent,
+    AuthMenuComponent,
+    LogoutComponent,
+    AboutComponent,
+    ShoppingInfoComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

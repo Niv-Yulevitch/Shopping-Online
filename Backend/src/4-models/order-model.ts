@@ -8,7 +8,7 @@ export interface IOrderModel extends mongoose.Document {
     deliveryCity: CityEnum;
     deliveryStreet: string;
     deliveryDate: Date;
-    CreditCard: number,
+    CreditCard: number;
     userId: mongoose.Schema.Types.ObjectId;
     cartId: mongoose.Schema.Types.ObjectId;
 }

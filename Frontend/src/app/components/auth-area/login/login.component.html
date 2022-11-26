@@ -1,0 +1,15 @@
+<div class="loginBox" *ngIf="!user">
+    <form (ngSubmit)="submit()">
+        <label>Email:</label>
+        <input type="email" name="username" [(ngModel)]="credentials.username" placeholder="email" required minlength="2" maxlength="100" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        
+        <label>Password:</label>
+        <input type="password" name="password" [(ngModel)]="credentials.password" placeholder="password" required minlength="2" maxlength="128">
+        
+        <button>Login</button>
+    </form>
+</div>
+
+<div *ngIf="user">
+    <button>To Shop</button>
+</div>

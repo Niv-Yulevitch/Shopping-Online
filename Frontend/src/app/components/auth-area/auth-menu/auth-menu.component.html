@@ -1,0 +1,10 @@
+<div>
+    <div *ngIf="!user">
+        <span>Hello Guest</span>
+    </div>
+    <div *ngIf="user">
+        <span>Hello {{user.firstName}} {{user.lastName}}</span>
+        <span> | </span>
+        <a title="logout" routerLink="/logout">Logout</a>
+    </div>
+</div>
