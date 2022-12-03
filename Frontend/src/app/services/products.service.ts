@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CategoryModel } from '../models/category.model';
 import { ProductModel } from '../models/product.model';
-import { categoriesStore } from '../redux/categories.state';
+import { CategoriesAction, CategoriesActionType, categoriesStore } from '../redux/categories.state';
 import { ProductsAction, ProductsActionType, productsStore } from '../redux/products.state';
 
 @Injectable({
@@ -38,8 +38,10 @@ export class ProductsService {
             const observable = this.http.get<CategoryModel[]>(environment.categoriesUrl);
             const categories = await firstValueFrom(observable);
 
-            const action: ProductsAction = { type: ProductsActionType.FetchProducts, payload: categories };
-            productsStore.dispatch(action);
+            console.log(categories);
+
+            const action: CategoriesAction = { type: CategoriesActionType.FetchCategories, payload: categories };
+            categoriesStore.dispatch(action);
         }
         return categoriesStore.getState().categories;
     };
@@ -54,10 +56,10 @@ export class ProductsService {
 
         const observable = this.http.post<ProductModel>(environment.productsUrl, formData);
         const addedProduct = await firstValueFrom(observable);
-        
-        const action: ProductsAction = { type: ProductsActionType.AddProduct, payload: addedProduct};
+
+        const action: ProductsAction = { type: ProductsActionType.AddProduct, payload: addedProduct };
         productsStore.dispatch(action);
-        
+
         return addedProduct;
     };
 
@@ -72,10 +74,20 @@ export class ProductsService {
 
         const observable = this.http.put<ProductModel>(environment.productsUrl + product._id, formData);
         const updatedProduct = await firstValueFrom(observable);
-        
-        const action: ProductsAction = { type: ProductsActionType.UpdateProduct, payload: updatedProduct};
+
+        const action: ProductsAction = { type: ProductsActionType.UpdateProduct, payload: updatedProduct };
         productsStore.dispatch(action);
-        
+
         return updatedProduct;
+    }
+
+    setSelectedCategory(categoryId: string) {
+        const action: CategoriesAction = { type: CategoriesActionType.SelectedCategory, payload: categoryId };
+        categoriesStore.dispatch(action);
+    }
+
+    setSearchText(text: string) {
+        const action: ProductsAction = { type: ProductsActionType.searchText, payload: text };
+        productsStore.dispatch(action);
     }
 }

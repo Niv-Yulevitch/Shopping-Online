@@ -1,4 +1,11 @@
-.homeMainDiv {
+/* css adapted from: 
+https://www.sliderrevolution.com/resources/css-animated-background/ */
+
+app-login {
+    z-index: 1;
+}
+
+.home-main-div {
     height: 100%;
     display: flex;
     justify-content: space-around;

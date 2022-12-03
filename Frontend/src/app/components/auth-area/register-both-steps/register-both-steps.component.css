@@ -1,0 +1,40 @@
+.main-div-register-form {
+    width: 800px;
+    margin: auto;
+}
+
+mat-horizontal-stepper {
+    width: 447px;
+    margin: auto;
+}
+
+/* .mat-stepper-horizontal {
+    background-color: transparent!important;
+} */
+
+.return-btn {
+    position: absolute;
+    top: 106px;
+    margin-left: 10px;
+}
+
+.go-to-login-link {
+    color: rgb(17, 45, 78);
+    position: relative;
+    bottom: 7px;
+    text-decoration: auto;
+}
+
+.return-btn > mat-icon {
+    color: rgb(17, 45, 78);
+}
+
+.go-to-login-text {
+    display: inline-block;
+    position: relative;
+    bottom: 6px;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
