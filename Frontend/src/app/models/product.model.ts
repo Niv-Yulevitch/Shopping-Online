@@ -2,7 +2,7 @@ import { CategoryModel } from "./category.model";
 
 export class ProductModel {
     _id: string;
-    name: string;
+    productName: string;
     price: number;
     imageName: string;
     image: File;

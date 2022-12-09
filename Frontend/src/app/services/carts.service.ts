@@ -61,9 +61,8 @@ export class CartsService {
         return cartByUser;
     };
 
+    //* Go over all the cart items and calculate the total amount of the cart:
     getTotalCartAmount() {
-        
-        // go over all the cart items and calculate the total amount of the cart:
         const cartItems = cartsStore.getState().cartItems;
         const total = cartItems.reduce((accumulator, currVal) => {
             return accumulator + (currVal.quantity * currVal.product.price)

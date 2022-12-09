@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Unsubscribe } from 'redux';
 import { CartModel } from 'src/app/models/cart.model';
@@ -15,7 +15,7 @@ import { NotifyService } from 'src/app/services/notify.service';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
     public credentials = new CredentialsModel();
     public user: UserModel;

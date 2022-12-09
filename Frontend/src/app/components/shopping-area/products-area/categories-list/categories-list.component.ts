@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Unsubscribe } from 'redux';
 import { CategoryModel } from 'src/app/models/category.model';
@@ -12,7 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './categories-list.component.html',
     styleUrls: ['./categories-list.component.css']
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
 
     categories: CategoryModel[];
     products: ProductModel[];
@@ -21,7 +21,7 @@ export class CategoriesListComponent implements OnInit {
 
     constructor(private productsService: ProductsService, private notify: NotifyService) { }
 
-    @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
+    @ViewChild(MatTabGroup) public tabGroup: MatTabGroup;
 
     async ngOnInit() {
 
@@ -48,10 +48,10 @@ export class CategoriesListComponent implements OnInit {
     async selectCategoryByIndex(index: number) {
         try {
             if (index === 0) {
-                this.productsService.setSelectedCategory('all')
+                this.productsService.setSelectedCategory('all');
             } else {
                 // Instead of going to the backend I am more efficient displaying products based on category ID saved to redux and subscribed in the component
-                this.productsService.setSelectedCategory(this.categories[index - 1]._id)
+                this.productsService.setSelectedCategory(this.categories[index - 1]._id);
             }
         } catch (err: any) {
             this.notify.error(err)

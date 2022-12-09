@@ -28,8 +28,8 @@ export class ProductsService {
 
     //* Count products:
     async countProducts(): Promise<number> {
-        const observable = this.http.get<number>(environment.productsUrl + "count")
-        return await firstValueFrom(observable)
+        const observable = this.http.get<number>(environment.productsUrl + "count");
+        return await firstValueFrom(observable);
     };
 
     //* Get all categories:
@@ -37,8 +37,6 @@ export class ProductsService {
         if (categoriesStore.getState().categories.length === 0) {
             const observable = this.http.get<CategoryModel[]>(environment.categoriesUrl);
             const categories = await firstValueFrom(observable);
-
-            console.log(categories);
 
             const action: CategoriesAction = { type: CategoriesActionType.FetchCategories, payload: categories };
             categoriesStore.dispatch(action);
@@ -49,7 +47,7 @@ export class ProductsService {
     //* Adding new product:
     async addProduct(product: ProductModel): Promise<ProductModel> {
         const formData = new FormData();
-        formData.append('name', product.name);
+        formData.append('name', product.productName);
         formData.append('price', product.price.toString());
         formData.append('categoryId', product.categoryId);
         formData.append('image', product.image);
@@ -63,11 +61,11 @@ export class ProductsService {
         return addedProduct;
     };
 
-    // //* Update exist product:
+    //* Update exist product:
     async updateProduct(product: ProductModel): Promise<ProductModel> {
         const formData = new FormData();
         formData.append('_id', product._id);
-        formData.append('name', product.name);
+        formData.append('name', product.productName);
         formData.append('price', product.price.toString());
         formData.append('categoryId', product.categoryId);
         formData.append('image', product.image);

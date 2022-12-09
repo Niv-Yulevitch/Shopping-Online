@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Unsubscribe } from 'redux';
 import { UserModel } from 'src/app/models/user.model';
 import { authStore } from 'src/app/redux/auth.state';
@@ -8,7 +8,7 @@ import { authStore } from 'src/app/redux/auth.state';
     templateUrl: './auth-menu.component.html',
     styleUrls: ['./auth-menu.component.css']
 })
-export class AuthMenuComponent implements OnInit {
+export class AuthMenuComponent implements OnInit, OnDestroy {
 
     public user: UserModel;
     public unsubscribe: Unsubscribe;

@@ -8,8 +8,8 @@
                 (click)="deleteAllItems()">Empty Cart</div>
         </div>
         <div class="shopping-cart-content">
-            <!-- <app-sidenav-details [fromShopPage]="isShoppingPage" *ngFor="let i of allItemsByCart" [item]="i"
-            (deleteItem)="deleteThisCard($event)"></app-sidenav-details> -->
+            <app-cart-details [fromShopPage]="isShoppingPage" *ngFor="let i of allItemsByCart" [item]="i"
+            (deleteItem)="deleteThisItem($event)"></app-cart-details>
         </div>
         <div class="shopping-cart-footer">
             <div *ngIf="totalAmount && allItemsByCart?.length !== 0">
@@ -17,7 +17,7 @@
                 <div class="total-amount">{{totalAmount | currency: "USD"}}</div>
             </div>
             <div class="checkout-btn" *ngIf="allItemsByCart?.length !== 0" routerLink="/order">
-                <mat-icon fontIcon="shopping-cart-checkout">shopping_cart</mat-icon>Checkout
+                <mat-icon class="shopping-cart-icon">shopping_cart</mat-icon>Checkout
             </div>
         </div>
     </div>

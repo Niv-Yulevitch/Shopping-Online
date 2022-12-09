@@ -1,6 +1,3 @@
-    <div class="category-style">
-        <app-categories-list></app-categories-list>
-    </div>
     <div>
-        <app-products-card></app-products-card>
+        <app-products-card *ngFor="let p of products" [product]="p" [role]="role" (add)="addProduct($event)"></app-products-card>
     </div>

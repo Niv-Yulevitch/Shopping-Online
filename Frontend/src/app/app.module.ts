@@ -26,6 +26,8 @@ import { ProductsCardComponent } from './components/shopping-area/products-area/
 import { CategoriesListComponent } from './components/shopping-area/products-area/categories-list/categories-list.component';
 import { CartDialogComponent } from './components/shopping-area/cart-area/cart-dialog/cart-dialog.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { CartDetailsComponent } from './components/shopping-area/cart-area/cart-details/cart-details.component';
+import { ProductDialogComponent } from './components/shopping-area/products-area/product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     ProductsListComponent,
     ProductsCardComponent,
     CategoriesListComponent,
-    CartDialogComponent
+    CartDialogComponent,
+    CartDetailsComponent,
+    ProductDialogComponent
   ],
   imports: [
     BrowserModule,
