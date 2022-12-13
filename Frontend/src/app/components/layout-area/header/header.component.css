@@ -3,3 +3,9 @@ app-auth-menu {
     right: 30px;
     top: 15px;
 }
+
+app-search {
+    position: absolute;
+    left: 544px;
+    top: 12px;
+}

@@ -19,7 +19,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
     unsubscribe: Unsubscribe;
     searchText = ''
 
-    constructor(private productsService: ProductsService, private notify: NotifyService) { }
+    constructor(private productsService: ProductsService, private notifyService: NotifyService) { }
 
     @ViewChild(MatTabGroup) public tabGroup: MatTabGroup;
 
@@ -34,12 +34,12 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
 
                 if (this.searchText !== '') {
                     // select "All" category
-                    this.tabGroup.selectedIndex = 0
-                }
-            })
+                    this.tabGroup.selectedIndex = 0;
+                };
+            });
 
         } catch (err: any) {
-            this.notify.error(err)
+            this.notifyService.error(err);
 
         }
 
@@ -54,7 +54,7 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
                 this.productsService.setSelectedCategory(this.categories[index - 1]._id);
             }
         } catch (err: any) {
-            this.notify.error(err)
+            this.notifyService.error(err)
         }
     }
 

@@ -16,10 +16,11 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductsListComponent implements OnInit, OnDestroy {
 
     public products: ProductModel[];
-    private unsubscribe: Unsubscribe;
+    private productsUnsubscribe: Unsubscribe;
+    private categoriesUnsubscribe: Unsubscribe;
     public role: RoleEnum;
 
-    constructor(private productsService: ProductsService, private notify: NotifyService) { }
+    constructor(private productsService: ProductsService, private notifyService: NotifyService) { }
 
     async ngOnInit() {
         try {
@@ -27,28 +28,37 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
             this.products = await this.productsService.getAllProducts();
 
-            this.unsubscribe = categoriesStore.subscribe(() => {
-                const selectedCategoryId = categoriesStore.getState().selectedCategory;
+            this.categoriesUnsubscribe = categoriesStore.subscribe(() => {
+                this.filterProductsByCategory();
+            })
 
-                if(selectedCategoryId == "all") {
-                }
-
-                // Filter products by selected category
-                if (selectedCategoryId != 'all') {
-                    this.products = productsStore.getState().products.filter(p => p.categoryId === selectedCategoryId);
-                } else {
-                    this.products = productsStore.getState().products.filter(p => p.productName.toLowerCase().startsWith(productsStore.getState().searchText.toLowerCase()));
-                }
+            this.productsUnsubscribe = productsStore.subscribe(() => {
+                this.filterProductsByCategory();
             })
         } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
+        }
+    }
+
+    //* Filter products by selected category:
+    filterProductsByCategory () : void {
+        const selectedCategoryId = categoriesStore.getState().selectedCategory;
+
+        if (selectedCategoryId != 'all') {
+            this.products = productsStore.getState().products.filter(p => p.categoryId === selectedCategoryId);
+        } else {
+            this.products = productsStore.getState().products.filter(p => p.productName.toLowerCase().startsWith(productsStore.getState().searchText.toLowerCase()));
         }
     }
 
     ngOnDestroy(): void {
-        if (this.unsubscribe) {
-            this.unsubscribe()
-        }
+        if (this.categoriesUnsubscribe) {
+            this.categoriesUnsubscribe();
+        };
+
+        if (this.productsUnsubscribe) {
+            this.productsUnsubscribe();
+        };
     }
 
     // ---------------------------------------------this is for user only: ----------------------------------------------

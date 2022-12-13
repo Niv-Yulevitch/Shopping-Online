@@ -1,3 +1,4 @@
 <div>
+    <app-search *ngIf="user && (router.url === '/shopping' || router.url === '/order')"></app-search>
     <app-auth-menu></app-auth-menu>
 </div>

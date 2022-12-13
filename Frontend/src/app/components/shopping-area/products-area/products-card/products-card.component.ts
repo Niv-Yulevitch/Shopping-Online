@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsCardComponent {
 
-    @Input() product: ProductModel;
-    @Input() role: RoleEnum;
+    @Input() public product: ProductModel;
+    @Input() public role: RoleEnum;
 
     public userRole = RoleEnum.User;
     public adminRole = RoleEnum.Admin;

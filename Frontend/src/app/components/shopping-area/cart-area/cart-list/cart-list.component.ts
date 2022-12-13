@@ -20,7 +20,7 @@ export class CartListComponent implements OnInit, OnDestroy {
     public totalAmount: number;
     private unsubscribe: Unsubscribe;
 
-    constructor(private notify: NotifyService, private cartsService: CartsService, public dialog: MatDialog) { }
+    constructor(private notifyService: NotifyService, private cartsService: CartsService, public dialog: MatDialog) { }
 
     @Input() openedTrigger!: boolean | string;
     @Output() openedChange = new EventEmitter<boolean>();
@@ -48,7 +48,7 @@ export class CartListComponent implements OnInit, OnDestroy {
               this.totalAmount = this.cartsService.getTotalCartAmount();
             });
           } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
           }
     }
 
@@ -64,10 +64,10 @@ export class CartListComponent implements OnInit, OnDestroy {
                 if (result === false || result === undefined) return;
 
                 await this.cartsService.deleteAllItemsByCart(this.allItemsByCart[0].cartId);
-                this.notify.success('All items in your cart have been deleted!');
+                this.notifyService.success('All items in your cart have been deleted!');
             });
         } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
         }
     }
 
@@ -80,10 +80,10 @@ export class CartListComponent implements OnInit, OnDestroy {
                 if (result === false || result === undefined) return;
 
                 await this.cartsService.deleteItem(arr[0], arr[1]);
-                this.notify.success('Item has been deleted');
+                this.notifyService.success('Item has been deleted');
             })
         } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
         }
     }
     

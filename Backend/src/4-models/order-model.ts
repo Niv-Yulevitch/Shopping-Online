@@ -8,7 +8,7 @@ export interface IOrderModel extends mongoose.Document {
     deliveryCity: CityEnum;
     deliveryStreet: string;
     deliveryDate: Date;
-    CreditCard: number;
+    creditCard: number;
     userId: mongoose.Schema.Types.ObjectId;
     cartId: mongoose.Schema.Types.ObjectId;
 }
@@ -37,7 +37,7 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>({
         type: Date,
         required: [true, "Missing delivery date"]
     },
-    CreditCard: {
+    creditCard: {
         type: Number,
         required: [true, "Missing credit card"],
         match: [/^[0-9]{14,16}$/, "Credit card must be a minimum of 14 numbers and max 16 numbers"],

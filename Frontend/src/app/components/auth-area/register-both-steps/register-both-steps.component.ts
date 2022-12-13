@@ -13,7 +13,7 @@ import { NotifyService } from 'src/app/services/notify.service';
 export class RegisterBothStepsComponent {
   user = new UserModel()
 
-  constructor(private notify: NotifyService, private authService: AuthService, private router: Router) { }
+  constructor(private notifyService: NotifyService, private authService: AuthService, private router: Router) { }
 
   @ViewChild('stepper') private myStepper: MatStepper;
 
@@ -35,11 +35,11 @@ export class RegisterBothStepsComponent {
 
     try {
       await this.authService.register(this.user)
-      this.notify.success('You have been registered')
+      this.notifyService.success('You have been registered')
       this.router.navigateByUrl('/home')
 
     } catch (err: any) {
-      this.notify.error(err)
+      this.notifyService.error(err)
     }
   }
 }

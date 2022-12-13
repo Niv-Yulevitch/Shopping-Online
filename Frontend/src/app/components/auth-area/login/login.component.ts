@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public unsubscribe: Unsubscribe;
     public currentCart: CartModel;
 
-    constructor(private authService: AuthService, private notify: NotifyService, private router: Router) { }
+    constructor(private authService: AuthService, private notifyService: NotifyService, private router: Router) { }
 
     ngOnInit() {
         this.user = authStore.getState().user;
@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         try {
             await this.authService.login(this.credentials);
 
-            this.notify.success("You are been logged in");
+            this.notifyService.success("You are been logged in");
 
         } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
         }
     }
 }

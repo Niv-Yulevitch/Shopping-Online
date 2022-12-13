@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     user: UserModel;
     unsubscribe: Unsubscribe;
 
-    constructor(private productsService: ProductsService, private notify: NotifyService) { }
+    constructor(private productsService: ProductsService, private notifyService: NotifyService) { }
 
     ngOnInit(): void {
         try {
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 }
             })
         } catch (err: any) {
-            this.notify.error(err)
+            this.notifyService.error(err)
         }
     }
 

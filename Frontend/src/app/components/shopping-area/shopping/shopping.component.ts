@@ -22,7 +22,7 @@ export class ShoppingComponent implements OnInit {
     public opened: boolean = true;
     public allItemsByCart: CartItemModel[] = [];
 
-    constructor(private router: Router, public cartsService: CartsService, public notify: NotifyService, public dialog: MatDialog) { }
+    constructor(private router: Router, public cartsService: CartsService, public notifyService: NotifyService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
         // Check the role of user:
@@ -53,14 +53,14 @@ export class ShoppingComponent implements OnInit {
                 // Creating new Cart Item:
                 const itemToBeAddedToCart = new CartItemModel(quantity, product._id, cartsStore.getState().currentCart?._id, total);
                 await this.cartsService.addItemToCart(itemToBeAddedToCart, authStore.getState().user._id);
-                this.notify.success("Item's in cart have been updated");
+                this.notifyService.success("Item's in cart have been updated");
 
                 // Updating the cartsStore (through backend): 
                 const cart = await this.cartsService.getCartByUser(authStore.getState().user._id);
                 await this.cartsService.getAllItemsByCart(cart?._id);
 
             } catch (err: any) {
-                this.notify.error(err);
+                this.notifyService.error(err);
             }
         })
     }

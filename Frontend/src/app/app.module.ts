@@ -28,6 +28,11 @@ import { CartDialogComponent } from './components/shopping-area/cart-area/cart-d
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { CartDetailsComponent } from './components/shopping-area/cart-area/cart-details/cart-details.component';
 import { ProductDialogComponent } from './components/shopping-area/products-area/product-dialog/product-dialog.component';
+import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
+import { SearchComponent } from './components/shopping-area/products-area/search/search.component';
+import { OrderComponent } from './components/shopping-area/order-area/order/order.component';
+import { OrderDialogComponent } from './components/shopping-area/order-area/order-dialog/order-dialog.component';
+import { AddOrderComponent } from './components/shopping-area/order-area/add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,7 @@ import { ProductDialogComponent } from './components/shopping-area/products-area
     AuthMenuComponent,
     LogoutComponent,
     AboutComponent,
+    SearchComponent,
     ShoppingInfoComponent,
     LoginComponent,
     RegisterStepOneComponent,
@@ -52,7 +58,11 @@ import { ProductDialogComponent } from './components/shopping-area/products-area
     CategoriesListComponent,
     CartDialogComponent,
     CartDetailsComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    HighlightSearchPipe,
+    OrderComponent,
+    OrderDialogComponent,
+    AddOrderComponent
   ],
   imports: [
     BrowserModule,

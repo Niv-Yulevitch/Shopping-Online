@@ -11,14 +11,14 @@ export class ShoppingInfoComponent implements OnInit {
 
     numberOfProducts: number;
 
-    constructor(private productsService: ProductsService, private notify: NotifyService) { }
+    constructor(private productsService: ProductsService, private notifyService: NotifyService) { }
 
     async ngOnInit() {
 
         try {
             this.numberOfProducts = await this.productsService.countProducts();
         } catch (err: any) {
-            this.notify.error(err);
+            this.notifyService.error(err);
         }
 
     }

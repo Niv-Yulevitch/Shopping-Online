@@ -10,12 +10,12 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class LogoutComponent implements OnInit {
 
-    constructor(private authService: AuthService, private notify: NotifyService, private router: Router, private productsService: ProductsService) { }
+    constructor(private authService: AuthService, private notifyService: NotifyService, private router: Router, private productsService: ProductsService) { }
 
     ngOnInit(): void {
         this.productsService.setSelectedCategory("all");
         this.authService.logout();
-        this.notify.success("You are logged-out");
+        this.notifyService.success("You are logged-out");
         this.router.navigateByUrl("/home");
     }
 

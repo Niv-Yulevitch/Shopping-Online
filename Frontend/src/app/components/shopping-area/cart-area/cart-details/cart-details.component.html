@@ -4,7 +4,7 @@
     </div>
     <div class="item-desc">
         <ng-container *ngIf="router.url === '/order'">
-            <span class="item-name" [innerHTML]="item.product.productName"></span>
+            <span class="item-name" [innerHTML]="item.product.productName | highlightSearch: search"></span>
         </ng-container>
         <ng-container *ngIf="router.url !== '/order'">
             <span class="item-name">{{item.product.productName}}</span>
