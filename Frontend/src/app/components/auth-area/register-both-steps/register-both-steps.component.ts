@@ -11,35 +11,32 @@ import { NotifyService } from 'src/app/services/notify.service';
   styleUrls: ['./register-both-steps.component.css']
 })
 export class RegisterBothStepsComponent {
-  user = new UserModel()
+  public user = new UserModel();
 
   constructor(private notifyService: NotifyService, private authService: AuthService, private router: Router) { }
 
   @ViewChild('stepper') private myStepper: MatStepper;
 
   userInfoFromStepOne(userStepOne: UserModel) {
-
-    this.user.idNumber = userStepOne.idNumber
-    this.user.username = userStepOne.username
-    this.user.password = userStepOne.password
+    this.user.idNumber = userStepOne.idNumber;
+    this.user.username = userStepOne.username;
+    this.user.password = userStepOne.password;
     this.myStepper.next();
-
   }
 
   async userInfoFromStepTwo(userStepTwo: UserModel) {
-
-    this.user.firstName = userStepTwo.firstName
-    this.user.lastName = userStepTwo.lastName
-    this.user.city = userStepTwo.city
-    this.user.street = userStepTwo.street
+    this.user.firstName = userStepTwo.firstName;
+    this.user.lastName = userStepTwo.lastName;
+    this.user.city = userStepTwo.city;
+    this.user.street = userStepTwo.street;
 
     try {
-      await this.authService.register(this.user)
-      this.notifyService.success('You have been registered')
-      this.router.navigateByUrl('/home')
+      await this.authService.register(this.user);
+      this.notifyService.success('You have been registered');
+      this.router.navigateByUrl('/home');
 
     } catch (err: any) {
-      this.notifyService.error(err)
+      this.notifyService.error(err);
     }
   }
 }

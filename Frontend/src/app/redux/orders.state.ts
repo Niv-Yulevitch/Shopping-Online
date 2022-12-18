@@ -29,6 +29,7 @@ export function ordersReducer(currentState = new OrdersState(), action: OrdersAc
             break;
 
         case OrdersActionType.AddOrder:
+            newState.theLastOrder = action.payload;
             newState.orders.push(action.payload);
             break;
     }

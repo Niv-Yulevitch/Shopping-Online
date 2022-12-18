@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { CityEnum } from 'src/app/models/city.enum';
 import { OrderModel } from 'src/app/models/order.model';
 import { UserModel } from 'src/app/models/user.model';
 import { authStore } from 'src/app/redux/auth.state';
 import { cartsStore } from 'src/app/redux/carts.state';
+import { ordersStore } from 'src/app/redux/orders.state';
 import { NotifyService } from 'src/app/services/notify.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
@@ -26,20 +28,37 @@ export class AddOrderComponent implements OnInit {
     public currentYear: number = this.today.getFullYear();
     public currentMonth: number = this.today.getMonth();
     public currentDay: number = this.today.getDate();
-    public minDate: Object = new Date(this.currentYear, this.currentMonth, this.currentDay);
+    public minDate: Date = new Date(this.currentYear, this.currentMonth, this.currentDay);
+    public maxDate: Date = new Date(this.currentYear, this.currentMonth + 1, this.currentDay);
 
-    public maxDate: Object = new Date(this.currentYear, this.currentMonth + 1, this.currentDay);
+    public orders: OrderModel[];
+    public blockedDates: Date[] = [new Date("19/12/2022"),new Date("20/12/2022"),new Date("21/12/2022"),new Date("22/12/2022")];
 
     constructor(private ordersService: OrdersService, private router: Router, private notifyService: NotifyService, public dialog: MatDialog) { }
 
-    //* This function prevents saturdays and sundays:
-    dateFilter(date: any) {
-        const day = date?.getDay()
-        return day !== 0 && day !== 6;
-    }
-
     async ngOnInit() {
         this.user = authStore.getState().user;
+
+        this.orders = ordersStore.getState().orders;
+        // this.blockedDates = this.isFullBooked(this.orders.filter(o => { o.deliveryDate }));
+    }
+    
+    //* This function prevents fridays and saturdays:
+    dateFilter(d: Date): boolean {
+        const day = d?.getDay()
+        if (day === 5 || day === 6) {
+            return false;
+        }
+
+        let date = moment(d);
+        if (this.blockedDates) {
+            return !this.blockedDates.find(x => {
+                console.log(moment(x).isSame(date, 'day'));
+                return moment(x).isSame(date, 'day');
+            });
+        }
+
+        return true;
     }
 
     async addOrder() {
@@ -66,6 +85,23 @@ export class AddOrderComponent implements OnInit {
     doubleClickToPopulate() {
         this.order.deliveryCity = this.user.city;
         this.order.deliveryStreet = this.user.street;
+        console.log(this.blockedDates);
     }
+
+    // isFullBooked(array: any[]): Date[] {
+    //     const blockedDates: Date[] = [];
+    //     const a = array.reduce((obj, b) => {
+    //         obj[b] = ++obj[b] || 1;
+    //         return obj
+    //     }, {})
+
+    //     for (const [key, value] of Object.entries(a)) {
+    //         if (value >= 3) {
+    //             blockedDates.push(new Date(key));
+    //         }
+    //     }
+
+    //     return blockedDates;
+    // }
 
 }

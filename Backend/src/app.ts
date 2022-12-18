@@ -18,6 +18,8 @@ import sanitize from "./3-middleware/sanitize";
 
 const server = express();
 
+server.use(cors({ origin: ['http://localhost:3001', 'http://localhost:4200'] }));
+
 server.use("/api/", expressRateLimit({
     windowMs: 1000,
     max: 10,
@@ -25,7 +27,6 @@ server.use("/api/", expressRateLimit({
 }));
 
 server.use(sanitize);
-server.use(cors());
 server.use(express.json());
 server.use(expressFileUpload());
 

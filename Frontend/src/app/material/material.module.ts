@@ -26,7 +26,7 @@ const materialComponents = [
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
 ]
 
 @NgModule({

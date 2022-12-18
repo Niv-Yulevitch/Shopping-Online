@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Unsubscribe } from 'redux';
 import { CartItemModel } from 'src/app/models/cart-item.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { RoleEnum } from 'src/app/models/role.enum';
@@ -21,10 +22,12 @@ export class ShoppingComponent implements OnInit {
     public user: UserModel;
     public opened: boolean = true;
     public allItemsByCart: CartItemModel[] = [];
+    public totalAmount: number;
+    public unsubscribe: Unsubscribe;
 
     constructor(private router: Router, public cartsService: CartsService, public notifyService: NotifyService, public dialog: MatDialog) { }
 
-    ngOnInit(): void {
+    async ngOnInit() {
         // Check the role of user:
         this.user = authStore.getState().user;
 
@@ -37,6 +40,15 @@ export class ShoppingComponent implements OnInit {
         if (cartsStore.getState().cartItems.length === 0) {
             this.opened = false;
         }
+
+        const cart = await this.cartsService.getCartByUser(this.user._id);
+        this.allItemsByCart = await this.cartsService.getAllItemsByCart(cart?._id)
+        this.totalAmount = this.cartsService.getTotalCartAmount();
+
+        this.unsubscribe = cartsStore.subscribe(() => {
+            this.allItemsByCart = cartsStore.getState().cartItems;
+            this.totalAmount = this.cartsService.getTotalCartAmount();
+        })
     }
 
     async addProduct(product: ProductModel) {

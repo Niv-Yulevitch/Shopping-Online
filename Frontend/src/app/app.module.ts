@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutComponent } from './components/layout-area/layout/layout.component';
 import { HeaderComponent } from './components/layout-area/header/header.component';
-import { MenuComponent } from './components/layout-area/menu/menu.component';
 import { HomeComponent } from './components/home-area/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -33,12 +32,12 @@ import { SearchComponent } from './components/shopping-area/products-area/search
 import { OrderComponent } from './components/shopping-area/order-area/order/order.component';
 import { OrderDialogComponent } from './components/shopping-area/order-area/order-dialog/order-dialog.component';
 import { AddOrderComponent } from './components/shopping-area/order-area/add-order/add-order.component';
+import { PdfReceiptComponent } from './components/shopping-area/order-area/pdf-receipt/pdf-receipt.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    MenuComponent,
     HomeComponent,
     FooterComponent,
     PageNotFoundComponent,
@@ -62,7 +61,8 @@ import { AddOrderComponent } from './components/shopping-area/order-area/add-ord
     HighlightSearchPipe,
     OrderComponent,
     OrderDialogComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    PdfReceiptComponent
   ],
   imports: [
     BrowserModule,

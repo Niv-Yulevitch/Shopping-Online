@@ -14,6 +14,9 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     async register(user: UserModel): Promise<void> {
+        user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
+        user.lastName = user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
+
         const observable = this.http.post<string>(environment.registerUrl, user);
         const token = await firstValueFrom(observable);
 

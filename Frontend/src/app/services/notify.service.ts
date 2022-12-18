@@ -6,10 +6,8 @@ import { Notyf } from 'notyf';
 })
 export class NotifyService {
 
-    constructor() { }
-
     private notify = new Notyf({
-        position: { x: "right", y: "bottom" },
+        position: { x: "center", y: "top" },
         types: [
             {
                 type: 'success',
@@ -25,25 +23,21 @@ export class NotifyService {
         ]
     });
 
-    public success(message: string): void {
+    success(message: string): void {
         this.notify.success(message);
-    }
-
-    public error(err: string): void {
+      }
+    
+      error(err: any): void {
         const message = this.extractErrorMessage(err);
         this.notify.error(message);
-    }
-
-    private extractErrorMessage(err: any): string {
-        if (typeof err === "string") return err;
-
-        if (typeof err.response?.data === "string") return err.response.data;
-
-        if (Array.isArray(err.response.data)) return err.response.data[0];
-
-        if (typeof err.message === "string") return err.message;
-
-        console.log(err);
-        return "Some error occurred, please try again"
-    }
+      }
+    
+      private extractErrorMessage(err: any): string {
+        if (typeof err === 'string') return err;
+        if (typeof err.error === 'string') return err.error;
+        if (Array.isArray(err.error)) return err.error[0];
+        if (typeof err.message === 'string') return err.message;
+        return 'Some error, please try again...';
+      }
+    
 }
