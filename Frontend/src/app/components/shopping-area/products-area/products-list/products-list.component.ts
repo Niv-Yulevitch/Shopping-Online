@@ -41,7 +41,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     }
 
     //* Filter products by selected category:
-    filterProductsByCategory () : void {
+    filterProductsByCategory(): void {
         const selectedCategoryId = categoriesStore.getState().selectedCategory;
 
         if (selectedCategoryId != 'all') {
@@ -59,6 +59,15 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         if (this.productsUnsubscribe) {
             this.productsUnsubscribe();
         };
+    }
+
+    // ---------------------------------------------this is for admin only: ----------------------------------------------
+
+    @Output()
+    public editProductEmit = new EventEmitter<ProductModel>();
+
+    public editProduct(product: ProductModel) {
+        this.editProductEmit.emit(product);
     }
 
     // ---------------------------------------------this is for user only: ----------------------------------------------

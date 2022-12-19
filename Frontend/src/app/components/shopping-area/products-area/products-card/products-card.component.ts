@@ -21,6 +21,15 @@ export class ProductsCardComponent {
 
     constructor(private productsService: ProductsService) { }
 
+    // ---------------------------------------------this is for admin only: ----------------------------------------------
+    @Output()
+    public edit = new EventEmitter<ProductModel>();
+
+    public editProduct(product: ProductModel) {
+        this.productsService.isAddAction.emit(false);
+        this.edit.emit(product);
+    }
+
     // ---------------------------------------------this is for user only: ----------------------------------------------
 
     @Output()

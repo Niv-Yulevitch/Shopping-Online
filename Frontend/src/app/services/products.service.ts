@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CategoryModel } from '../models/category.model';
@@ -11,6 +11,7 @@ import { ProductsAction, ProductsActionType, productsStore } from '../redux/prod
     providedIn: 'root'
 })
 export class ProductsService {
+    isAddAction = new EventEmitter<boolean>();
 
     constructor(private http: HttpClient) { }
 
@@ -47,7 +48,7 @@ export class ProductsService {
     //* Adding new product:
     async addProduct(product: ProductModel): Promise<ProductModel> {
         const formData = new FormData();
-        formData.append('name', product.productName);
+        formData.append('productName', product.productName);
         formData.append('price', product.price.toString());
         formData.append('categoryId', product.categoryId);
         formData.append('image', product.image);
@@ -65,7 +66,7 @@ export class ProductsService {
     async updateProduct(product: ProductModel): Promise<ProductModel> {
         const formData = new FormData();
         formData.append('_id', product._id);
-        formData.append('name', product.productName);
+        formData.append('productName', product.productName);
         formData.append('price', product.price.toString());
         formData.append('categoryId', product.categoryId);
         formData.append('image', product.image);

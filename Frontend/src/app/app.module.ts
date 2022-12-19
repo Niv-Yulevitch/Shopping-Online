@@ -33,6 +33,10 @@ import { OrderComponent } from './components/shopping-area/order-area/order/orde
 import { OrderDialogComponent } from './components/shopping-area/order-area/order-dialog/order-dialog.component';
 import { AddOrderComponent } from './components/shopping-area/order-area/add-order/add-order.component';
 import { PdfReceiptComponent } from './components/shopping-area/order-area/pdf-receipt/pdf-receipt.component';
+import { AddOrUpdateProductComponent } from './components/admin-area/add-or-update-product/add-or-update-product.component';
+import { UpdateProductComponent } from './components/admin-area/update-product/update-product.component';
+import { AddProductComponent } from './components/admin-area/add-product/add-product.component';
+import { AdminHomeComponent } from './components/admin-area/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +66,11 @@ import { PdfReceiptComponent } from './components/shopping-area/order-area/pdf-r
     OrderComponent,
     OrderDialogComponent,
     AddOrderComponent,
-    PdfReceiptComponent
+    PdfReceiptComponent,
+    AddOrUpdateProductComponent,
+    UpdateProductComponent,
+    AddProductComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,

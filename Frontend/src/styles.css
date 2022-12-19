@@ -1,11 +1,16 @@
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden
 }
 
 body {
-  font-family: 'Poppins', sans-serif!important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.highlight {
+    background-color: plum;
+    font-weight: bold;
 }
