@@ -11,8 +11,8 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>({
     username: {
         type: String,
         required: [true, "Missing username"],
-        min: [5, "Username is too short"],
-        max: [100, "Username is too long"],
+        minlength: [5, "Username is too short"],
+        maxlength: [100, "Username is too long"],
         trim: true,
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "You have entered an invalid email address"]
@@ -20,8 +20,8 @@ export const CredentialsSchema = new mongoose.Schema<ICredentialsModel>({
     password: {
         type: String,
         required: [true, "Missing password"],
-        min: [4, "Password is to short"],
-        max: [256, "Password is too long"],
+        minlength: [4, "Password is to short"],
+        maxlength: [256, "Password is too long"],
         trim: true
     }
 }, {

@@ -76,9 +76,7 @@ export const UserSchema = new mongoose.Schema<IUserModel>({
         maxlength: [1, "Role can't exceed 1"],
     },
 }, {
-    versionKey: false,
-    // toJSON: { virtuals: true },
-    // id: false
+    versionKey: false
 });
 
 //* Model:

@@ -44,22 +44,28 @@ export class AddOrderComponent implements OnInit {
     }
     
     //* This function prevents fridays and saturdays:
-    dateFilter(d: Date): boolean {
-        const day = d?.getDay()
-        if (day === 5 || day === 6) {
-            return false;
-        }
-
-        let date = moment(d);
-        if (this.blockedDates) {
-            return !this.blockedDates.find(x => {
-                console.log(moment(x).isSame(date, 'day'));
-                return moment(x).isSame(date, 'day');
-            });
-        }
-
-        return true;
+    dateFilter(date: any) {
+        const day = date?.getDay()
+        return day !== 5 && day !== 6;
     }
+
+      
+    // dateFilter(d: Date): boolean {
+    //     const day = d?.getDay()
+    //     if (day === 5 || day === 6) {
+    //         return false;
+    //     }
+
+    //     let date = moment(d);
+    //     if (this.blockedDates) {
+    //         return !this.blockedDates.find(x => {
+    //             console.log(moment(x).isSame(date, 'day'));
+    //             return moment(x).isSame(date, 'day');
+    //         });
+    //     }
+
+    //     return true;
+    // }
 
     async addOrder() {
         try {
@@ -85,7 +91,6 @@ export class AddOrderComponent implements OnInit {
     doubleClickToPopulate() {
         this.order.deliveryCity = this.user.city;
         this.order.deliveryStreet = this.user.street;
-        console.log(this.blockedDates);
     }
 
     // isFullBooked(array: any[]): Date[] {

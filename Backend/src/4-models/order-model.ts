@@ -48,7 +48,8 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>({
 }, {
     versionKey: false,
     toJSON: {virtuals: true},
-    id: false
+    id: false,
+    timestamps: true
 });
 
 OrderSchema.virtual("user", {

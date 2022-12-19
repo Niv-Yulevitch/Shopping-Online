@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     public credentials = new CredentialsModel();
     public user: UserModel;
-    public unsubscribe: Unsubscribe;
+    public authUnsubscribe: Unsubscribe;
+    public cartsUnsubscribe: Unsubscribe;
     public currentCart: CartModel;
     public lastOrder: OrderModel;
 
@@ -29,7 +30,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.user = authStore.getState().user;
-        this.unsubscribe = authStore.subscribe(() => {
+
+        this.cartsUnsubscribe = cartsStore.subscribe(() => {
+            if (this.user !== null) {
+                this.currentCart = cartsStore.getState().currentCart;
+                this.lastOrder = this.ordersService.getMostRecentOrder();
+            }
+        })
+
+        this.authUnsubscribe = authStore.subscribe(() => {
             this.user = authStore.getState().user;
 
             if (this.user !== null) {
@@ -40,8 +49,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if (this.unsubscribe) {
-            this.unsubscribe();
+        if (this.authUnsubscribe) {
+            this.authUnsubscribe();
+        }
+
+        if (this.cartsUnsubscribe) {
+            this.cartsUnsubscribe();
         }
     }
 
@@ -62,7 +75,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     getLoggedInState() {
-
         if (!this.currentCart && !this.lastOrder && this.user) {
           return 'Start Shopping'
         }
