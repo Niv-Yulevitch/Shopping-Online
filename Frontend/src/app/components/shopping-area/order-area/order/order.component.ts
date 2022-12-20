@@ -19,6 +19,8 @@ export class OrderComponent implements OnInit {
     constructor(private notifyService: NotifyService, private cartsService: CartsService) { }
 
     async ngOnInit() {
+
+        
         try {
             this.cartByUser = await this.cartsService.getCartByUser(authStore.getState().user._id);
             this.allItemsByCart = await this.cartsService.getAllItemsByCart(this.cartByUser?._id);

@@ -8,18 +8,20 @@ import { HomeComponent } from './components/home-area/home/home.component';
 import { PageNotFoundComponent } from './components/layout-area/page-not-found/page-not-found.component';
 import { OrderComponent } from './components/shopping-area/order-area/order/order.component';
 import { ShoppingComponent } from './components/shopping-area/shopping/shopping.component';
+import { AdminGuard } from './services/admin.guard';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
     { path: "logout", component: LogoutComponent },
     { path: "register", component: RegisterBothStepsComponent },
 
     { path: "home", component: HomeComponent },
-    { path: "shopping", component: ShoppingComponent },
+    { path: "shopping", component: ShoppingComponent, canActivate: [AuthGuard] },
 
-    { path: 'admin-home', component: AdminHomeComponent },
-    { path: 'admin/edit/:id', component: UpdateProductComponent },
+    { path: 'admin-home', component: AdminHomeComponent, canActivate: [AdminGuard] },
+    { path: 'admin/edit/:id', component: UpdateProductComponent, canActivate: [AdminGuard] },
 
-    { path: 'order', component: OrderComponent},
+    { path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
     
     { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "**", component: PageNotFoundComponent },
