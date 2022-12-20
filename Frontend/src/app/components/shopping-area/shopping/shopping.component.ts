@@ -59,6 +59,10 @@ export class ShoppingComponent implements OnInit {
 
             if (!quantity) return;
 
+            if (cartsStore.getState().cartItems.length === 0) {
+                this.opened = true;
+            }
+
             try {
                 const total = (quantity) * product.price;
 
@@ -76,5 +80,4 @@ export class ShoppingComponent implements OnInit {
             }
         })
     }
-
 }

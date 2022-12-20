@@ -40,8 +40,6 @@
         <button class="choose-file-btn" type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
         <input accept="image/*" #imageBox [formControl]="imageInput" hidden (change)="onFileSelected($event)"
             (click)="displayError=true" #fileInput type="file">
-        <mat-hint align="end" class="file-name" [ngClass]="dynamicClass"  *ngIf="!imageInput.errors?.['required']">{{selectedFile?.name}}</mat-hint>
-        <mat-hint align="end" *ngIf="displayError && imageInput.errors?.['required']">Missing Image</mat-hint>
         <button mat-raised-button class="edit-order-btn" [disabled]="productForm.invalid">Update</button>
     </form>
 </div>

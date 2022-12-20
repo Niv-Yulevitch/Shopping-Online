@@ -31,41 +31,50 @@ export class AddOrderComponent implements OnInit {
     public minDate: Date = new Date(this.currentYear, this.currentMonth, this.currentDay);
     public maxDate: Date = new Date(this.currentYear, this.currentMonth + 1, this.currentDay);
 
-    public orders: OrderModel[];
-    public blockedDates: Date[] = [new Date("19/12/2022"),new Date("20/12/2022"),new Date("21/12/2022"),new Date("22/12/2022")];
-
     constructor(private ordersService: OrdersService, private router: Router, private notifyService: NotifyService, public dialog: MatDialog) { }
 
     async ngOnInit() {
         this.user = authStore.getState().user;
-
-        this.orders = ordersStore.getState().orders;
-        // this.blockedDates = this.isFullBooked(this.orders.filter(o => { o.deliveryDate }));
     }
-    
-    //* This function prevents fridays and saturdays:
+
+    //* This function prevents fridays and saturdays and dates that have more than 3 orders:
     dateFilter(date: any) {
+
+        //* Prevents fridays and saturdays:
         const day = date?.getDay()
-        return day !== 5 && day !== 6;
+        if (day === 5 || day === 6) {
+            return false;
+        }
+
+        //* Get all the orders dates:
+        const orders: OrderModel[] = ordersStore.getState().orders;
+        const arrOfOrdersDates: any[] = orders.map(o => o.deliveryDate);
+
+        //* Count how many there are of the same value:
+        const arr = arrOfOrdersDates.reduce((obj, b) => {
+            obj[b] = ++obj[b] || 1;
+            return obj
+        }, {})
+
+        //* Turn them into an array of dates number:
+        let blockedDates = [];
+        for (const [key, value] of Object.entries(arr)) {
+            if (value >= 3) {
+                blockedDates.push(new Date(key).getDate());
+            }
+        }
+        
+        //* Prevents dates that have more than 3 orders:
+        let d = date?.getDate();
+        if (blockedDates) {
+            return !blockedDates.find(x => {
+                return x == d;
+            });
+        }
+
+        return true;
+
     }
-
-      
-    // dateFilter(d: Date): boolean {
-    //     const day = d?.getDay()
-    //     if (day === 5 || day === 6) {
-    //         return false;
-    //     }
-
-    //     let date = moment(d);
-    //     if (this.blockedDates) {
-    //         return !this.blockedDates.find(x => {
-    //             console.log(moment(x).isSame(date, 'day'));
-    //             return moment(x).isSame(date, 'day');
-    //         });
-    //     }
-
-    //     return true;
-    // }
 
     async addOrder() {
         try {
@@ -92,21 +101,4 @@ export class AddOrderComponent implements OnInit {
         this.order.deliveryCity = this.user.city;
         this.order.deliveryStreet = this.user.street;
     }
-
-    // isFullBooked(array: any[]): Date[] {
-    //     const blockedDates: Date[] = [];
-    //     const a = array.reduce((obj, b) => {
-    //         obj[b] = ++obj[b] || 1;
-    //         return obj
-    //     }, {})
-
-    //     for (const [key, value] of Object.entries(a)) {
-    //         if (value >= 3) {
-    //             blockedDates.push(new Date(key));
-    //         }
-    //     }
-
-    //     return blockedDates;
-    // }
-
 }
