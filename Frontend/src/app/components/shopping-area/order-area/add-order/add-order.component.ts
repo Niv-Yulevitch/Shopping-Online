@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { Unsubscribe } from 'redux';
 import { CityEnum } from 'src/app/models/city.enum';
 import { OrderModel } from 'src/app/models/order.model';
 import { UserModel } from 'src/app/models/user.model';
@@ -17,12 +17,13 @@ import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
     templateUrl: './add-order.component.html',
     styleUrls: ['./add-order.component.css']
 })
-export class AddOrderComponent implements OnInit {
+export class AddOrderComponent implements OnInit, OnDestroy {
 
     public CityEnum = CityEnum;
     public user: UserModel;
     public order = new OrderModel();
     public cartId: string;
+    public unsubscribe: Unsubscribe;
 
     public today: Date = new Date();
     public currentYear: number = this.today.getFullYear();
@@ -31,10 +32,16 @@ export class AddOrderComponent implements OnInit {
     public minDate: Date = new Date(this.currentYear, this.currentMonth, this.currentDay);
     public maxDate: Date = new Date(this.currentYear, this.currentMonth + 1, this.currentDay);
 
+    public orders: OrderModel[];
+
     constructor(private ordersService: OrdersService, private router: Router, private notifyService: NotifyService, public dialog: MatDialog) { }
 
     async ngOnInit() {
         this.user = authStore.getState().user;
+
+        this.unsubscribe = ordersStore.subscribe(() => {
+            this.orders = ordersStore.getState().orders;
+        });
     }
 
     //* This function prevents fridays and saturdays and dates that have more than 3 orders:
@@ -63,7 +70,7 @@ export class AddOrderComponent implements OnInit {
                 blockedDates.push(new Date(key).getDate());
             }
         }
-        
+
         //* Prevents dates that have more than 3 orders:
         let d = date?.getDate();
         if (blockedDates) {
@@ -100,5 +107,11 @@ export class AddOrderComponent implements OnInit {
     doubleClickToPopulate() {
         this.order.deliveryCity = this.user.city;
         this.order.deliveryStreet = this.user.street;
+    }
+
+    ngOnDestroy(): void {
+        if (this.unsubscribe) {
+            this.unsubscribe();
+        }
     }
 }

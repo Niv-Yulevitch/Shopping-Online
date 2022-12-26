@@ -1,3 +1,4 @@
+import hash from "../2-utils/cyber";
 import { ValidationError } from "../4-models/client-errors";
 import { IOrderModel, OrderModel } from "../4-models/order-model";
 import cartsLogic from "./carts-logic";
@@ -6,6 +7,8 @@ import cartsLogic from "./carts-logic";
 async function addOrder(order: IOrderModel): Promise<IOrderModel> {
     const errors = order.validateSync();
     if (errors) throw new ValidationError(errors.message);
+
+    order.creditCard = hash(order.creditCard);
 
     await cartsLogic.closeCart(order.cartId.toString());
 

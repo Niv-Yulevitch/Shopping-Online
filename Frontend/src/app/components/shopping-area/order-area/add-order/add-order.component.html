@@ -50,23 +50,12 @@
             <mat-label>Credit card: </mat-label>
             
             <input matInput type="text" name="creditCard" [(ngModel)]="order.creditCard" required
-                #creditCardBox="ngModel" minlength="14" maxlength="16" pattern="^[0-9]{14,16}$">
-            
-            <mat-hint class="old-color" align="start">
-                Credit card number between 14-16 characters
-            </mat-hint>
+                #creditCardBox="ngModel" pattern="^\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})\b$">
             <mat-hint align="end" *ngIf="creditCardBox.errors?.['required'] && creditCardBox.touched">
                 Missing credit card
             </mat-hint>
-            <mat-hint align="end" *ngIf="creditCardBox.touched && creditCardBox.errors?.['minlength']">
-                Credit card is too short
-            </mat-hint>
-            <mat-hint align="end" *ngIf="creditCardBox.touched && creditCardBox.errors?.['maxlength']">
-                Credit card is too long
-            </mat-hint>
             <mat-hint align="end"
-                *ngIf="!creditCardBox.errors?.['required'] && !creditCardBox.errors?.['minlength'] &&
-                !creditCardBox.errors?.['maxlength'] && creditCardBox.errors?.['pattern']">
+                *ngIf="!creditCardBox.errors?.['required'] && creditCardBox.invalid && creditCardBox.touched && creditCardBox.errors?.['pattern']">
                 Invalid credit card
             </mat-hint>
         </mat-form-field>

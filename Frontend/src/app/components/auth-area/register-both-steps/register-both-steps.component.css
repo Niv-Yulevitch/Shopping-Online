@@ -1,21 +1,22 @@
 .main-div-register-form {
-    width: 800px;
-    margin: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 mat-horizontal-stepper {
     width: 447px;
     margin: auto;
+    border-radius: 8px;
 }
 
-/* .mat-stepper-horizontal {
-    background-color: transparent!important;
-} */
+.mat-stepper-horizontal {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 
 .return-btn {
-    position: absolute;
-    top: 106px;
-    margin-left: 10px;
+    margin-top: 12px;
 }
 
 .go-to-login-link {

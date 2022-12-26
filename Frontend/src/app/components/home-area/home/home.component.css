@@ -1,10 +1,18 @@
-app-login {
-    z-index: 1;
-}
-
 .home-main-div {
     height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-image: url(../../../../assets/images/background-image.png);
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.about-and-info {
+    width: 400px;
+}
+
+app-login {
+    margin-right: 200px;
 }

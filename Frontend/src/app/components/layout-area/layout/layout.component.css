@@ -3,7 +3,7 @@
     height: 100%;
     box-sizing: border-box;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 15% 80% 5%;
+    grid-template-rows: 10% 85% 5%;
 }
 
 header, footer {
@@ -13,4 +13,5 @@ header, footer {
 main {
     grid-column: span 6;
     overflow: auto;
+    background-color: lightblue;
 }

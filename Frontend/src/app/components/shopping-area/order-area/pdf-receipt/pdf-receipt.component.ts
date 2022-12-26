@@ -26,6 +26,8 @@ export class PdfReceiptComponent {
         const totalAmount = this.cartsService.getTotalCartAmount();
 
         if (!theLastOrder) return;
+        
+        console.log(theLastOrder);
 
         let docDefinition = {
             content: [
@@ -56,31 +58,36 @@ export class PdfReceiptComponent {
                             },
                             { text: user.username },
                             { text: user.street },
-                            { text: user.city }
+                            { text: user.city },
+                            {
+                                text: `Order Date: ${new Date(theLastOrder.createdAt).toLocaleDateString()}`,
+                                alignment: 'left'
+                            },
                         ],
                         [
                             {
                                 text: `Order Date: ${new Date(theLastOrder.createdAt).toLocaleDateString()}`,
-                                alignment: 'right'
+                                alignment: 'left'
                             },
                             {
                                 text: `Delivery Date: ${new Date(theLastOrder.deliveryDate).toLocaleDateString()}`,
-                                alignment: 'right'
+                                alignment: 'left'
                             },
                             {
                                 text: `Credit Card: ${theLastOrder.creditCard.toString().slice(-4).padStart(theLastOrder.creditCard.toString().length, '*')}`,
-                                alignment: 'right'
+                                alignment: 'left'
                             },
                             {
                                 text: 'Bill No :' + theLastOrder._id,
-                                alignment: 'right'
+                                alignment: 'left'
                             }
                         ]
                     ]
                 },
                 {
                     text: 'Delivery Details',
-                    style: 'sectionHeader'
+                    style: 'sectionHeader',
+                    alignment: 'left'
                 },
                 {
                     columns: [
