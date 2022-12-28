@@ -7,22 +7,7 @@
     overflow: auto;
 }
 
-.add-and-update{
-    background: lightblue;
-    border: 1px solid black;
-    height: 80%;
-    width: 30%;
-    border-radius: 8px;
-}
-
-app-add-product {
-    background: lightblue;
-    border: 1px solid black;
-    height: 80%;
-    width: 30%;
-    border-radius: 8px;
-}
-app-update-product {
+.add-and-update, app-add-product, app-update-product {
     background: lightblue;
     border: 1px solid black;
     height: 80%;

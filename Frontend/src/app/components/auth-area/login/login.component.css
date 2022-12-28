@@ -29,12 +29,12 @@ mat-hint {
 }
 
 .login-box {
-        display: inline-block;
-        margin: 10px;
-        padding: 0 10px;
-        border-radius: 8px;
-        text-align: left;
-        background: rgb(219, 226, 239);
+    display: inline-block;
+    margin: 10px;
+    padding: 0 10px;
+    border-radius: 8px;
+    text-align: left;
+    background: rgb(219, 226, 239);
 }
 
 .start-shopping-image {
@@ -90,7 +90,6 @@ mat-hint {
 .start-shopping-header {
     font-size: 17px;
     display: inline-block;
-    right: 20px;
     position: relative;
     font-weight: bold;
 }

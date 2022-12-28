@@ -9,7 +9,7 @@
           Price: {{product.price | currency: "USD"}}
         </p>
       </mat-card-content>
-      <mat-card-actions align="end">
+      <mat-card-actions>
         <button (click)="addProduct(product)" mat-raised-button class="add-btn" *ngIf="role === userRole">
           <mat-icon>add</mat-icon>
         </button>

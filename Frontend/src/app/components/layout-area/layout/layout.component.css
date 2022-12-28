@@ -15,3 +15,9 @@ main {
     overflow: auto;
     background-color: lightblue;
 }
+
+@media only screen and (max-width:1020px) {
+    .layout-container {
+        grid-template-rows: 13% 82% 5%;
+    }
+}

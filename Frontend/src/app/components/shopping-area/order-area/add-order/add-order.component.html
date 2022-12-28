@@ -6,7 +6,7 @@
         <mat-form-field floatLabel="always" appearance="fill" (dblclick)="doubleClickToPopulate()">
             <mat-label>Shipping City: </mat-label>
 
-            <mat-select name="city" [(ngModel)]="order.deliveryCity" required #cityBox="ngModel" placeholder="Select city...">
+            <mat-select name="city" [(ngModel)]="order.deliveryCity" required #cityBox="ngModel">
                 <mat-option *ngFor="let enum of CityEnum | keyvalue" [value]="enum.value">{{enum.value}}</mat-option>
             </mat-select>
 

@@ -1,23 +1,10 @@
 img {
     width: 80px;
-    /* height: 61px; */
     border-radius: 3px;
 }
 
 div>div:last-child {
     margin-left: auto;
-}
-
-.increase {
-    cursor: pointer;
-    height: 21px;
-    width: 21px;
-}
-
-.decrease {
-    cursor: pointer;
-    height: 21px;
-    width: 21px;
 }
 
 .delete {
@@ -32,7 +19,6 @@ div>div:last-child {
 .item-cart {
     width: 100%;
     border-bottom: 1px solid rgb(230, 221, 221);
-    width: 100%;
     box-sizing: border-box;
     margin-bottom: 5px;
 }
