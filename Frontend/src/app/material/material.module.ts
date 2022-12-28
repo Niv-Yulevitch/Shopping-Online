@@ -10,7 +10,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
 const materialComponents = [
@@ -31,6 +31,9 @@ const materialComponents = [
 
 @NgModule({
     imports: [materialComponents],
-    exports: [materialComponents]
+    exports: [materialComponents],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'en-IL' }
+    ]
 })
 export class MaterialModule { }

@@ -39,6 +39,8 @@ export class AddOrderComponent implements OnInit, OnDestroy {
     async ngOnInit() {
         this.user = authStore.getState().user;
 
+        this.orders = await this.ordersService.getAllOrders();
+
         this.unsubscribe = ordersStore.subscribe(() => {
             this.orders = ordersStore.getState().orders;
         });
@@ -67,15 +69,22 @@ export class AddOrderComponent implements OnInit, OnDestroy {
         let blockedDates = [];
         for (const [key, value] of Object.entries(arr)) {
             if (value >= 3) {
-                blockedDates.push(new Date(key).getDate());
+                let dateNumber = new Date(key).getDate()
+                let dateMonth = new Date(key).getMonth()
+                let fullDate = {dateNumber, dateMonth}
+                blockedDates.push(fullDate);
             }
         }
 
         //* Prevents dates that have more than 3 orders:
-        let d = date?.getDate();
+        let dNumber = date?.getDate();
+        let dMonth = date?.getMonth();
         if (blockedDates) {
             return !blockedDates.find(x => {
-                return x == d;
+                if (x.dateMonth == dMonth) {
+                    return x.dateNumber == dNumber;
+                }
+                return !x.dateNumber
             });
         }
 

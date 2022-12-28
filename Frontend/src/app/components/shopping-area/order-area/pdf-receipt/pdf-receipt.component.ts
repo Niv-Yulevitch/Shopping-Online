@@ -27,8 +27,6 @@ export class PdfReceiptComponent {
 
         if (!theLastOrder) return;
         
-        console.log(theLastOrder);
-
         let docDefinition = {
             content: [
                 {
@@ -42,8 +40,7 @@ export class PdfReceiptComponent {
                     fontSize: 20,
                     bold: true,
                     alignment: 'center',
-                    decoration: 'underline',
-                    color: 'skyblue'
+                    decoration: 'underline'
                 },
                 {
                     text: 'Customer Details',
@@ -58,28 +55,24 @@ export class PdfReceiptComponent {
                             },
                             { text: user.username },
                             { text: user.street },
-                            { text: user.city },
-                            {
-                                text: `Order Date: ${new Date(theLastOrder.createdAt).toLocaleDateString()}`,
-                                alignment: 'left'
-                            },
+                            { text: user.city }
                         ],
                         [
                             {
-                                text: `Order Date: ${new Date(theLastOrder.createdAt).toLocaleDateString()}`,
-                                alignment: 'left'
+                                text: `Order Date: ${new Date(theLastOrder.createdAt).toLocaleDateString('en-IL')}`,
+                                alignment: 'right'
                             },
                             {
-                                text: `Delivery Date: ${new Date(theLastOrder.deliveryDate).toLocaleDateString()}`,
-                                alignment: 'left'
+                                text: `Delivery Date: ${new Date(theLastOrder.deliveryDate).toLocaleDateString('en-IL')}`,
+                                alignment: 'right'
                             },
                             {
-                                text: `Credit Card: ${theLastOrder.creditCard.toString().slice(-4).padStart(theLastOrder.creditCard.toString().length, '*')}`,
-                                alignment: 'left'
+                                text: `Credit Card: ${theLastOrder.creditCard4Digits}`,
+                                alignment: 'right'
                             },
                             {
                                 text: 'Bill No :' + theLastOrder._id,
-                                alignment: 'left'
+                                alignment: 'right'
                             }
                         ]
                     ]
@@ -110,7 +103,7 @@ export class PdfReceiptComponent {
                         headerRows: 1,
                         widths: ['*', 'auto', 'auto', 'auto'],
                         body: [
-                            [{ text: 'Product', bold: true, fillColor: 'beige' }, { text: 'Price', bold: true, fillColor: 'beige' }, { text: 'Quantity', bold: true, fillColor: 'beige' }, { text: 'Amount', bold: true, fillColor: 'beige' }],
+                            [{ text: 'Product', bold: true, fillColor: 'lightblue', fontSize: 16 }, { text: 'Price', bold: true, fillColor: 'lightblue', fontSize: 16 }, { text: 'Quantity', bold: true, fillColor: 'lightblue', fontSize: 16 }, { text: 'Amount', bold: true, fillColor: 'lightblue', fontSize: 16 }],
                             ...cartItems.map(c => ([c.product.productName, '$' + c.product.price, c.quantity, '$' + (c.product.price * c.quantity).toFixed(2)])),
                             [{ text: 'Total Amount', bold: true, fillColor: 'pink' }, { text: '', fillColor: 'pink' }, { text: '', fillColor: 'pink' }, { text: '$' + totalAmount.toFixed(2), bold: true, fillColor: 'pink' }]
                         ]
@@ -127,12 +120,6 @@ export class PdfReceiptComponent {
 
                         { text: 'Github', color: 'blue', link: 'https://github.com/Niv-Yulevitch' }
                     ],
-                },
-                {
-                    columns: [
-                        [{ qr: `https://www.linkedin.com/in/niv-yulevitch/`, fit: '100' }],
-                        [{ qr: `https://github.com/Niv-Yulevitch`, alignment: 'right', fit: '98' }],
-                    ]
                 },
                 {
                     text: 'Terms and Conditions',

@@ -40,7 +40,7 @@ async function addProduct(product: IProductModel): Promise<IProductModel> {
         ); // .gif / .png / .jpg / .jpeg
         product.imageName = uuid() + extension;
         await product.image.mv(locations.getProductImageFile(product.imageName)); // mv = move = copy image.
-        delete product.image; // Delete File before saving.
+        product.image = undefined; // Delete File before saving.
     }
 
     return product.save();

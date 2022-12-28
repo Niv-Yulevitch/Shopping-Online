@@ -19,6 +19,7 @@ router.get("/orders", verifyLoggedIn, async (request: Request, response: Respons
 router.post("/orders", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const order = new OrderModel(request.body);
+        order.creditCard4Digits = order.creditCard.toString().slice(-4).padStart(order.creditCard.toString().length, '*');
         const addedOrder = await ordersLogic.addOrder(order);
         response.status(201).json(addedOrder);
     } catch (err: any) {

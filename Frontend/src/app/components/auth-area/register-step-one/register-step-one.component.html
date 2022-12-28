@@ -16,7 +16,7 @@
 
         <mat-form-field floatLabel="always" appearance="fill">
             <mat-label>Email: </mat-label>
-            <input matInput type="email" placeholder="email" [formControl]="usernameInput">
+            <input matInput type="email" placeholder="example@gmail.com" [formControl]="usernameInput">
             <mat-hint align="end" *ngIf="usernameInput.touched && usernameInput.errors?.['required']">Missing email</mat-hint>
             <mat-hint align="end" *ngIf="usernameInput.touched && usernameInput.errors?.['minlength']">Email is too short</mat-hint>
             <mat-hint align="end" *ngIf="usernameInput.touched && usernameInput.errors?.['maxlength']">Email is too long</mat-hint>
@@ -30,7 +30,7 @@
 
         <mat-form-field floatLabel="always" appearance="fill">
             <mat-label>Password: </mat-label>
-            <input matInput type="password" placeholder="password" [formControl]="passwordInput">
+            <input matInput type="password" placeholder="********" [formControl]="passwordInput">
             <mat-hint align="end" *ngIf="passwordInput.touched && passwordInput.errors?.['required']">Missing password</mat-hint>
             <mat-hint align="end" *ngIf="passwordInput.touched && passwordInput.errors?.['minlength']">Password is too short</mat-hint>
             <mat-hint align="end" *ngIf="passwordInput.touched && passwordInput.errors?.['maxlength']">Password is too long</mat-hint>
@@ -38,7 +38,7 @@
 
         <mat-form-field floatLabel="always" appearance="fill">
             <mat-label>Confirm Password: </mat-label>
-             <input matInput type="password" placeholder="confirm password"
+             <input matInput type="password" placeholder="********"
                 [formControl]="passwordConfirmInput">
             <mat-hint align="end"
                 *ngIf="passwordConfirmInput.touched && passwordConfirmInput.errors?.['required']">Missing password</mat-hint>

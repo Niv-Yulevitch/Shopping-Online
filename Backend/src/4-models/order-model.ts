@@ -9,6 +9,7 @@ export interface IOrderModel extends mongoose.Document {
     deliveryStreet: string;
     deliveryDate: Date;
     creditCard: string;
+    creditCard4Digits: string;
     userId: mongoose.Schema.Types.ObjectId;
     cartId: mongoose.Schema.Types.ObjectId;
 }
@@ -40,6 +41,10 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>({
     creditCard: {
         type: String,
         required: [true, "Missing credit card"],
+        trim: true
+    },
+    creditCard4Digits: {
+        type: String,
         trim: true
     },
     userId: mongoose.Schema.Types.ObjectId,

@@ -9,6 +9,7 @@ export class OrderModel {
     deliveryStreet: string;
     deliveryDate: Date;
     creditCard: number;
+    creditCard4Digits: string;
     createdAt: Date;
     userId: string;
     user: UserModel;

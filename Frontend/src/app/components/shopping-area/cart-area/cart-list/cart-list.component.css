@@ -13,6 +13,7 @@
 
 .shopping-cart-footer {
     font-size: 17px;
+    z-index: 1;
 }
 
 .cart-header {
@@ -41,6 +42,7 @@
 }
 
 .checkout-btn:hover {
+    background-color: rgba(144, 195, 122, 0.5);
     cursor: pointer;
 }
 
@@ -56,6 +58,7 @@
 }
 
 .delete-all:hover {
+    background-color: rgba(195, 122, 122, 0.5);
     cursor: pointer;
 }
 

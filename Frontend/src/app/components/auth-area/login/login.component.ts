@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     getLoggedInState() {
-        if (!this.currentCart && !this.lastOrder && this.user) {
+        if (!this.currentCart && this.user) {
           return 'Start Shopping'
         }
         return 'Resume Shopping'

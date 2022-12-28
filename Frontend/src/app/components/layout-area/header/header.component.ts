@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     public user: UserModel;
     private unsubscribe: Unsubscribe;
+    public pathByUserState: string;
 
     constructor(public router: Router) { }
 
@@ -20,6 +21,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.user = authStore.getState().user;
         this.unsubscribe = authStore.subscribe(() => {
             this.user = authStore.getState().user;
+            
+            if (!this.user) {
+                this.pathByUserState = "/home";
+            } else {
+                this.pathByUserState = "/shopping";
+            }
         });
     }
 
