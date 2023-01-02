@@ -3,15 +3,15 @@ import path from 'path';
 import locations from "../2-utils/locations";
 import fs from "fs";
 
-const router = express.Router() 
+const router = express.Router()
 
-// GET http://localhost:3001/shopping/images/:imageName
+//* GET http://localhost:3001/shopping/images/:imageName
 router.get('/shopping/images/:imageName', async (request: Request, response: Response, next: NextFunction) => {
     try {
         const imageName = request.params.imageName;
 
         let imageFile = locations.getProductImageFile(imageName);
-        if(!fs.existsSync(imageFile)) imageFile = locations.notFoundImageFile;
+        if (!fs.existsSync(imageFile)) imageFile = locations.notFoundImageFile;
 
         response.sendFile(imageFile);
     } catch (err: any) {

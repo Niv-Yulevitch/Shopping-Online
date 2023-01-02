@@ -3,6 +3,7 @@ import { CartModel } from "./cart-model";
 import CityEnum from "./city-enum";
 import { UserModel } from "./user-model";
 
+//* Interface:
 export interface IOrderModel extends mongoose.Document {
     finalPrice: number;
     deliveryCity: CityEnum;
@@ -14,6 +15,7 @@ export interface IOrderModel extends mongoose.Document {
     cartId: mongoose.Schema.Types.ObjectId;
 }
 
+//* Schema:
 export const OrderSchema = new mongoose.Schema<IOrderModel>({
     finalPrice: {
         type: Number,
@@ -51,7 +53,7 @@ export const OrderSchema = new mongoose.Schema<IOrderModel>({
     cartId: mongoose.Schema.Types.ObjectId
 }, {
     versionKey: false,
-    toJSON: {virtuals: true},
+    toJSON: { virtuals: true },
     id: false,
     timestamps: true
 });
@@ -70,4 +72,5 @@ OrderSchema.virtual("cart", {
     justOne: true
 });
 
+//* Model:
 export const OrderModel = mongoose.model<IOrderModel>("OrderModel", OrderSchema, "orders");

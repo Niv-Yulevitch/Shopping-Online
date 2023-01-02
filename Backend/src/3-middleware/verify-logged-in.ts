@@ -11,13 +11,13 @@ async function verifyLoggedIn(request: Request, response: Response, next: NextFu
     const isValid = await auth.verifyToken(authHeader);
 
     //* If token is not valid:
-    if(!isValid) {
-        next(new UnauthorizedError("You are not logged in")); // catchAll middleware
+    if (!isValid) {
+        next(new UnauthorizedError("You are not logged in")); //* catchAll middleware
         return;
     };
 
     //* All is OK:
-    next(); // Continue to next middleware or to desired route.
+    next(); //* Continue to next middleware or to desired route.
 
 };
 

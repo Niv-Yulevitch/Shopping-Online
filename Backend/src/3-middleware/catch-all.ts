@@ -5,17 +5,17 @@ async function catchAll(err: any, request: Request, response: Response, next: Ne
 
     const fileName = './src/1-assets/logs/error-logs.txt';
 
-    // Log error to console:
+    //* Log error to console:
     console.log(err);
 
-    // Log error in a log file:
+    //* Log error in a log file:
     const now = new Date();
     await fsPromises.appendFile(fileName, `${now} -> ${err.status}: ${err.message}\n----------------------------------------------------------------------------------------------\n`);
 
-    // Get status code: 
+    //* Get status code: 
     const statusCode = err.status ? err.status : 500;
 
-    // Return error to frontend: 
+    //* Return error to frontend: 
     response.status(statusCode).send(err.message);
 }
 

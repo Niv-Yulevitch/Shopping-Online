@@ -76,6 +76,6 @@ async function checkValidEmailAndIdNumber(user: IUserModel): Promise<boolean> {
 
 export default {
     register,
-    login, 
+    login,
     checkValidEmailAndIdNumber
 };

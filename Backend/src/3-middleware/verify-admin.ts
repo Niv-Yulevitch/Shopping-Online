@@ -12,19 +12,19 @@ async function verifyAdmin(request: Request, response: Response, next: NextFunct
     const isValid = await auth.verifyToken(authHeader);
 
     //* If token is not valid:
-    if(!isValid) {
+    if (!isValid) {
         next(new UnauthorizedError("You are not logged in")); // catchAll middleware
         return;
     };
 
     //* Get user from token:
     const user = auth.getUserFromToken(authHeader);
-    
+
     //* If user.role is not admin:
     if (user.role !== RoleEnum.Admin) {
         next(new ForbiddenError("You are not authorized"));
         return;
-    } 
+    }
 
     //* All is OK:
     next(); // Continue to next middleware or to desired route.

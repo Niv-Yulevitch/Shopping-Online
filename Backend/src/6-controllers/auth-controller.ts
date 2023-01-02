@@ -5,7 +5,7 @@ import authLogic from "../5-logic/auth-logic";
 
 const router = express.Router();
 
-// POST http://localhost:3001/api/auth/check-if-email-or-id-is-unique
+//* POST http://localhost:3001/api/auth/check-if-email-or-id-is-unique
 router.post("/check-if-email-or-id-is-unique", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const user = new UserModel(request.body);
@@ -17,7 +17,7 @@ router.post("/check-if-email-or-id-is-unique", async (request: Request, response
     }
 });
 
-// POST http://localhost:3001/api/auth/register
+//* POST http://localhost:3001/api/auth/register
 router.post("/register", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const user = new UserModel(request.body);
@@ -29,7 +29,7 @@ router.post("/register", async (request: Request, response: Response, next: Next
     }
 });
 
-// POST http://localhost:3001/api/auth/login
+//* POST http://localhost:3001/api/auth/login
 router.post("/login", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const credentials = new CredentialsModel(request.body);

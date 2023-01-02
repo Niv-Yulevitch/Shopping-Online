@@ -39,7 +39,7 @@ export const UserSchema = new mongoose.Schema<IUserModel>({
         match: [/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, "You have entered an invalid email address"]
     },
     password: {
-        type: String, 
+        type: String,
         required: [true, "Missing password"],
         minlength: [2, "Password too short"],
         maxlength: [128, "Password too long"],

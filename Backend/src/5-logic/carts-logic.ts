@@ -22,7 +22,7 @@ async function closeCart(_id: string): Promise<ICartModel> {
     await CartModel.updateOne({ _id }, { $set: { isClosed: true } }).exec();
 
     const cart = await CartModel.findOne({ _id }).exec();
-    
+
     return cart;
 };
 

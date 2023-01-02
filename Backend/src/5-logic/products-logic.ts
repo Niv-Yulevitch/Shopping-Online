@@ -60,12 +60,12 @@ async function updateProduct(product: IProductModel): Promise<IProductModel> {
     if (product.image) {
         await safeDelete(locations.getProductImageFile(product.imageName));
         const extension = product.image.name.substring(
-          product.image.name.lastIndexOf(".")
+            product.image.name.lastIndexOf(".")
         ); // .gif / .png / .jpg / .jpeg
         product.imageName = uuid() + extension;
         await product.image.mv(locations.getProductImageFile(product.imageName)); // mv = move = copy image.
         delete product.image; // Delete File before saving.
-      }
+    }
 
     const updatedProduct = await ProductModel.findByIdAndUpdate(product._id, product, { returnOriginal: false }).exec();
     if (!updatedProduct) throw new IdNotFoundError(product._id);

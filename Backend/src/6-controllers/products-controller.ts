@@ -6,7 +6,7 @@ import productsLogic from "../5-logic/products-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/categories
+//* GET http://localhost:3001/api/categories
 router.get("/categories", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const categories = await productsLogic.getAllCategories();
@@ -16,7 +16,7 @@ router.get("/categories", verifyLoggedIn, async (request: Request, response: Res
     }
 });
 
-// GET http://localhost:3001/api/products
+//* GET http://localhost:3001/api/products
 router.get("/products", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const products = await productsLogic.getAllProducts();
@@ -26,7 +26,7 @@ router.get("/products", verifyLoggedIn, async (request: Request, response: Respo
     }
 });
 
-// GET http://localhost:3001/api/products/count
+//* GET http://localhost:3001/api/products/count
 router.get("/products/count", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const count = await productsLogic.countProducts();
@@ -36,7 +36,7 @@ router.get("/products/count", async (request: Request, response: Response, next:
     }
 });
 
-// GET http://localhost:3001/api/products/:_id
+//* GET http://localhost:3001/api/products/:_id
 router.get("/products/:_id", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const _id = request.params._id;
@@ -47,7 +47,7 @@ router.get("/products/:_id", verifyLoggedIn, async (request: Request, response: 
     }
 });
 
-// POST http://localhost:3001/api/products
+//* POST http://localhost:3001/api/products
 router.post("/products", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
         request.body.image = request.files?.image;
@@ -59,7 +59,7 @@ router.post("/products", verifyAdmin, async (request: Request, response: Respons
     }
 });
 
-// PUT http://localhost:3001/api/products/:_id
+//* PUT http://localhost:3001/api/products/:_id
 router.put("/products/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
         request.body.image = request.files?.image;

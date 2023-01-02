@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { CartModel } from "./cart-model";
 import { ProductModel } from "./product-model";
 
+//* Interface:
 export interface ICartItemModel extends mongoose.Document {
     quantity: number;
     total: number;
@@ -9,6 +10,7 @@ export interface ICartItemModel extends mongoose.Document {
     cartId: mongoose.Schema.Types.ObjectId;
 }
 
+//* Schema:
 export const CartItemSchema = new mongoose.Schema<ICartItemModel>({
     quantity: {
         type: Number,
@@ -42,4 +44,5 @@ CartItemSchema.virtual('cart', {
     justOne: true
 });
 
+//* Model:
 export const CartItemModel = mongoose.model<ICartItemModel>("CartItemModel", CartItemSchema, "cart-items");

@@ -4,7 +4,7 @@ import cartsLogic from "../5-logic/carts-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/cart-by-user/:userId
+//* GET http://localhost:3001/api/cart-by-user/:userId
 router.get("/cart-by-user/:userId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const userId = request.params.userId;

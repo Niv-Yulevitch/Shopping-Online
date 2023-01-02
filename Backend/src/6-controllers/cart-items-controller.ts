@@ -5,7 +5,7 @@ import cartItemsLogic from "../5-logic/cart-items-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/items-by-cart/:cartId
+//* GET http://localhost:3001/api/items-by-cart/:cartId
 router.get("/items-by-cart/:cartId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const cartId = request.params.cartId;
@@ -16,7 +16,7 @@ router.get("/items-by-cart/:cartId", verifyLoggedIn, async (request: Request, re
     }
 });
 
-// POST http://localhost:3001/api/items/:userId
+//* POST http://localhost:3001/api/items/:userId
 router.post("/items/:userId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const userId = request.params.userId;
@@ -29,7 +29,7 @@ router.post("/items/:userId", verifyLoggedIn, async (request: Request, response:
     }
 });
 
-// DELETE http://localhost:3001/api/items/:productId/:cartId
+//* DELETE http://localhost:3001/api/items/:productId/:cartId
 router.delete("/items/:productId/:cartId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const productId = request.params.productId;
@@ -41,7 +41,7 @@ router.delete("/items/:productId/:cartId", verifyLoggedIn, async (request: Reque
     }
 });
 
-// DELETE http://localhost:3001/api/items/:cartId
+//* DELETE http://localhost:3001/api/items/:cartId
 router.delete("/items/:cartId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const cartId = request.params.cartId;

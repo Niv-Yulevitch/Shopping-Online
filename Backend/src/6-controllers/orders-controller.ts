@@ -5,7 +5,7 @@ import ordersLogic from "../5-logic/orders-logic";
 
 const router = express.Router();
 
-// GET http://localhost:3001/api/orders/
+//* GET http://localhost:3001/api/orders/
 router.get("/orders", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const orders = await ordersLogic.getAllOrders();
@@ -15,7 +15,7 @@ router.get("/orders", verifyLoggedIn, async (request: Request, response: Respons
     }
 });
 
-// POST http://localhost:3001/api/orders/
+//* POST http://localhost:3001/api/orders/
 router.post("/orders", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const order = new OrderModel(request.body);
@@ -27,7 +27,7 @@ router.post("/orders", verifyLoggedIn, async (request: Request, response: Respon
     }
 });
 
-// GET http://localhost:3001/api/orders/count
+//* GET http://localhost:3001/api/orders/count
 router.get("/orders/count", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const count = await ordersLogic.countOrders();
