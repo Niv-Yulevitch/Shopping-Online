@@ -12,6 +12,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
     templateUrl: './pdf-receipt.component.html',
     styleUrls: ['./pdf-receipt.component.css']
 })
+
 export class PdfReceiptComponent {
 
     constructor(private cartsService: CartsService) { }
@@ -26,7 +27,7 @@ export class PdfReceiptComponent {
         const totalAmount = this.cartsService.getTotalCartAmount();
 
         if (!theLastOrder) return;
-        
+
         let docDefinition = {
             content: [
                 {

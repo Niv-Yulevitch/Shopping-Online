@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
     templateUrl: './products-card.component.html',
     styleUrls: ['./products-card.component.css']
 })
-export class ProductsCardComponent {
 
+export class ProductsCardComponent {
     @Input() public product: ProductModel;
     @Input() public role: RoleEnum;
 
@@ -38,5 +38,4 @@ export class ProductsCardComponent {
     public addProduct(product: ProductModel) {
         this.add.emit(product);
     }
-
 }

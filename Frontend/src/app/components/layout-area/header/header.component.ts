@@ -9,6 +9,7 @@ import { authStore } from 'src/app/redux/auth.state';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
 
     public user: UserModel;
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.user = authStore.getState().user;
         this.unsubscribe = authStore.subscribe(() => {
             this.user = authStore.getState().user;
-            
+
             if (!this.user) {
                 this.pathByUserState = "/home";
             } else {
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if(this.unsubscribe) {
+        if (this.unsubscribe) {
             this.unsubscribe();
         };
     }

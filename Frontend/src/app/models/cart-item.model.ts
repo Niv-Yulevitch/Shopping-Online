@@ -12,8 +12,8 @@ export class CartItemModel {
 
     constructor(quantity: number, productId: string, cartId: string, total: number) {
         this.quantity = quantity,
-        this.productId = productId,
-        this.cartId = cartId,
-        this.total = total
+            this.productId = productId,
+            this.cartId = cartId,
+            this.total = total
     }
 };

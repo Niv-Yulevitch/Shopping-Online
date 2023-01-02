@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Unsubscribe } from 'redux';
 import { CartModel } from 'src/app/models/cart.model';
 import { OrderModel } from 'src/app/models/order.model';
@@ -15,8 +15,8 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './shopping-info.component.html',
     styleUrls: ['./shopping-info.component.css']
 })
-export class ShoppingInfoComponent implements OnInit {
 
+export class ShoppingInfoComponent implements OnInit, OnDestroy {
     public numberOfProducts: number;
     public numberOfOrders: number;
     public user: UserModel;
@@ -38,7 +38,7 @@ export class ShoppingInfoComponent implements OnInit {
                 this.user = authStore.getState().user;
                 this.currentCart = cartsStore.getState().currentCart;
             })
-            
+
             this.cartsUnsubscribe = cartsStore.subscribe(() => {
                 this.user = authStore.getState().user;
                 this.currentCart = cartsStore.getState().currentCart;
@@ -49,28 +49,27 @@ export class ShoppingInfoComponent implements OnInit {
         } catch (err: any) {
             this.notifyService.error(err);
         }
-
     }
 
     getOrderText() {
-        if (this.numberOfOrders > 1){
-          return `So far our store has had a total of ${this.numberOfOrders} orders!`;
-        } 
-    
+        if (this.numberOfOrders > 1) {
+            return `So far our store has had a total of ${this.numberOfOrders} orders!`;
+        };
+
         if (this.numberOfOrders === 1) {
-         return 'Our store currently has one order.';
-        }
-         
+            return 'Our store currently has one order.';
+        };
+
         return 'Our store currently has no orders!';
-      }
-    
-      ngOnDestroy(): void {
+    }
+
+    ngOnDestroy(): void {
         if (this.authUnsubscribe) {
             this.authUnsubscribe();
         }
-        
+
         if (this.cartsUnsubscribe) {
             this.cartsUnsubscribe();
         }
-      }
+    }
 }

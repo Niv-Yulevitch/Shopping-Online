@@ -40,7 +40,7 @@ app-search {
     top: 5px;
 }
 
-::ng-deep .header-container .mat-input-element::placeholder{
+::ng-deep .header-container .mat-input-element::placeholder {
     color: lightblue;
 }
 

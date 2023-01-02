@@ -23,7 +23,7 @@ export class AddOrderComponent implements OnInit, OnDestroy {
     public user: UserModel;
     public order = new OrderModel();
     public cartId: string;
-    public unsubscribe: Unsubscribe;
+    private unsubscribe: Unsubscribe;
 
     public today: Date = new Date();
     public currentYear: number = this.today.getFullYear();
@@ -62,34 +62,35 @@ export class AddOrderComponent implements OnInit, OnDestroy {
         //* Count how many there are of the same value:
         const arr = arrOfOrdersDates.reduce((obj, b) => {
             obj[b] = ++obj[b] || 1;
-            return obj
+            return obj;
         }, {})
 
         //* Turn them into an array of dates number:
         let blockedDates = [];
+
         for (const [key, value] of Object.entries(arr)) {
             if (value >= 3) {
-                let dateNumber = new Date(key).getDate()
-                let dateMonth = new Date(key).getMonth()
-                let fullDate = {dateNumber, dateMonth}
+                let dateNumber = new Date(key).getDate();
+                let dateMonth = new Date(key).getMonth();
+                let fullDate = { dateNumber, dateMonth };
                 blockedDates.push(fullDate);
-            }
-        }
+            };
+        };
 
         //* Prevents dates that have more than 3 orders:
         let dNumber = date?.getDate();
         let dMonth = date?.getMonth();
+
         if (blockedDates) {
             return !blockedDates.find(x => {
                 if (x.dateMonth == dMonth) {
                     return x.dateNumber == dNumber;
                 }
-                return !x.dateNumber
+                return !x.dateNumber;
             });
-        }
+        };
 
         return true;
-
     }
 
     async addOrder() {
@@ -102,11 +103,12 @@ export class AddOrderComponent implements OnInit, OnDestroy {
             this.notifyService.success("Order has been added");
 
             let dialogRef = this.dialog.open(OrderDialogComponent);
+
             dialogRef.afterClosed().subscribe((result) => {
                 if (result === undefined) {
                     this.router.navigateByUrl('/shopping');
                 }
-            })
+            });
         } catch (err: any) {
             this.notifyService.error(err);
         }

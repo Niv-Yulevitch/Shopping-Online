@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/services/products.service';
     selector: 'app-logout',
     template: ""
 })
+
 export class LogoutComponent implements OnInit {
 
     constructor(private authService: AuthService, private notifyService: NotifyService, private router: Router, private productsService: ProductsService) { }
@@ -18,5 +19,4 @@ export class LogoutComponent implements OnInit {
         this.notifyService.success("You are logged-out");
         this.router.navigateByUrl("/home");
     }
-
 }

@@ -5,12 +5,12 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './product-dialog.component.html',
     styleUrls: ['./product-dialog.component.css']
 })
+
 export class ProductDialogComponent implements OnInit {
 
-    quantity: number;
+    public quantity: number;
 
     ngOnInit(): void {
-        this.quantity = 1
+        this.quantity = 1;
     }
-
 }

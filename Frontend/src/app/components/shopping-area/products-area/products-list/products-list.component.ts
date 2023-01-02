@@ -13,8 +13,8 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './products-list.component.html',
     styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit, OnDestroy {
 
+export class ProductsListComponent implements OnInit, OnDestroy {
     public products: ProductModel[];
     private productsUnsubscribe: Unsubscribe;
     private categoriesUnsubscribe: Unsubscribe;

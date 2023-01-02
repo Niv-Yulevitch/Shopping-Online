@@ -80,11 +80,13 @@ export class ProductsService {
         return updatedProduct;
     }
 
+    //* Set selected category when user move from one to anther and set it in redux:
     setSelectedCategory(categoryId: string) {
         const action: CategoriesAction = { type: CategoriesActionType.SelectedCategory, payload: categoryId };
         categoriesStore.dispatch(action);
     }
 
+    //* Set search text when user enter text to the search input and set it in redux:
     setSearchText(text: string) {
         const action: ProductsAction = { type: ProductsActionType.searchText, payload: text };
         productsStore.dispatch(action);

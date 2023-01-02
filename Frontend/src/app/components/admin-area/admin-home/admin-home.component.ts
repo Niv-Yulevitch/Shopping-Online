@@ -11,41 +11,40 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './admin-home.component.html',
     styleUrls: ['./admin-home.component.css']
 })
-export class AdminHomeComponent implements OnInit, OnDestroy {
 
-    public user: UserModel
-    public unsubscribe: Unsubscribe
+export class AdminHomeComponent implements OnInit, OnDestroy {
+    public user: UserModel;
+    private unsubscribe: Unsubscribe;
     public opened = false;
 
-    products: ProductModel[]
-    categories: CategoryModel[]
-    editedProduct: ProductModel;
-    isAddAction: boolean;
+    public products: ProductModel[];
+    public categories: CategoryModel[];
+    public editedProduct: ProductModel;
+    public isAddAction: boolean;
 
     constructor(private productsService: ProductsService, private notifyService: NotifyService) { }
 
     async ngOnInit() {
         try {
-          //now i have all the program filled with all that I need for the rest of the child components - if we have the products already will get from store instead of backend:
-          this.products = await this.productsService.getAllProducts()
-          this.categories = await this.productsService.getAllCategories()
-    
+            //* Now I have all the program filled with all that I need for the rest of the child components - if we have the products already will get from store instead of backend:
+            this.products = await this.productsService.getAllProducts();
+            this.categories = await this.productsService.getAllCategories();
+
         } catch (err: any) {
-          this.notifyService.error(err)
+            this.notifyService.error(err);
         }
-      }
-    
-      ngOnDestroy(): void {
+    }
+
+    ngOnDestroy(): void {
         if (this.unsubscribe) {
-          this.unsubscribe()
+            this.unsubscribe();
         }
-      }
-    
-      productToEdit(product: ProductModel) {
+    }
+
+    productToEdit(product: ProductModel) {
         this.isAddAction = false;
         this.editedProduct = null;
         this.editedProduct = product;
-        this.opened = true
-      }
-
+        this.opened = true;
+    }
 }

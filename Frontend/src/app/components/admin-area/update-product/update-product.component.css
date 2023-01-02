@@ -29,7 +29,7 @@ mat-hint {
 }
 
 .edit-order-btn {
-    background-color: rgb(255,165,0);
+    background-color: rgb(255, 165, 0);
     color: rgb(249, 247, 247);
     width: 100%;
     margin-top: 19px;
@@ -40,7 +40,7 @@ mat-hint {
 }
 
 .mat-form-field {
-    display: block!important;
+    display: block !important;
 }
 
 .choose-file-btn {

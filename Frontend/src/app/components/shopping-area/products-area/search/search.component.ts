@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductModel } from 'src/app/models/product.model';
-import { categoriesStore } from 'src/app/redux/categories.state';
 import { NotifyService } from 'src/app/services/notify.service';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -10,8 +9,8 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
 
+export class SearchComponent implements OnInit {
     public search: string = '';
     public products: ProductModel[];
 
@@ -45,5 +44,4 @@ export class SearchComponent implements OnInit {
         this.search = '';
         this.productsService.setSearchText('');
     }
-
 }

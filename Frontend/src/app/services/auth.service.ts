@@ -32,6 +32,7 @@ export class AuthService {
         authStore.dispatch(action);
     }
 
+    //* Check if there is duplicate username or ID number:
     async checkValidEmailAndIdNumber(user: UserModel): Promise<boolean> {
         const observable = this.http.post<boolean>(environment.emailAndIdNumberUniqueUrl, user);
         return await firstValueFrom(observable);

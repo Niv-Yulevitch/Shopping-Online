@@ -12,6 +12,8 @@ export class AdminGuard implements CanActivate {
 
     public constructor(private notify: NotifyService, private router: Router) { }
 
+    //* This function is invoked whenever user tries to enter a route required to be admin
+    //* This function should return true if the user is actually admin, or false if he isn't admin:
     canActivate(): boolean {
         if (authStore.getState().user?.role === RoleEnum.Admin) {
             return true;

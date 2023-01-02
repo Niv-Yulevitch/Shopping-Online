@@ -2,13 +2,13 @@ import { createStore } from "redux";
 import { CartItemModel } from "../models/cart-item.model";
 import { CartModel } from "../models/cart.model";
 
-// Carts State - carts data needed in the application level:
+//* Carts State - carts data needed in the application level:
 export class CartsState {
     public currentCart: CartModel;
     public cartItems: CartItemModel[] = [];
 }
 
-// Carts Action Type - any action which can be done on the above carts state:
+//* Carts Action Type - any action which can be done on the above carts state:
 export enum CartsActionType {
     FetchCartsItems = "FetchCartsItems",
     DeleteItemFromCart = "DeleteItemFromCart", // Delete one item!
@@ -16,13 +16,13 @@ export enum CartsActionType {
     GetActiveCart = "GetActiveCart"
 }
 
-// Carts Action - any single object sent to the store during 'dispatch':
+//* Carts Action - any single object sent to the store during 'dispatch':
 export interface CartsAction {
     type: CartsActionType;
     payload?: any;
 }
 
-// Carts Reducer - the main function performing any action on carts state:
+//* Carts Reducer - the main function performing any action on carts state:
 export function cartsReducer(currentState = new CartsState(), action: CartsAction): CartsState {
     const newState = { ...currentState };
 

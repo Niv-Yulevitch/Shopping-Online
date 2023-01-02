@@ -7,21 +7,22 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './add-or-update-product.component.html',
     styleUrls: ['./add-or-update-product.component.css']
 })
+
 export class AddOrUpdateProductComponent implements OnInit {
 
     public product: ProductModel;
     public isAddAction = true;
-    public editWasClicked = false
+    public editWasClicked = false;
 
     @Input('productToBeEdited') set productToBeEdited(product: ProductModel) {
         if (product) {
             this.product = product;
             this.isAddAction = false;
-            this.editWasClicked = true
-        }
+            this.editWasClicked = true;
+        };
     }
 
-    //We need this so edit button can be clicked more than once - (see productsService line 16 for reference)
+    //* We need this so edit button can be clicked more than once - (see productsService line 14 for reference)
     @Input('isAddActionInput') set isAddActionInput(isAdd: boolean) { }
 
     constructor(private productsService: ProductsService) { }

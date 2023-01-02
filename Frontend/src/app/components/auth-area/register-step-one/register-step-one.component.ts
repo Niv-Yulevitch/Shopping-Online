@@ -8,15 +8,15 @@ import { AuthService } from 'src/app/services/auth.service';
     templateUrl: './register-step-one.component.html',
     styleUrls: ['./register-step-one.component.css']
 })
-export class RegisterStepOneComponent implements OnInit {
 
+export class RegisterStepOneComponent implements OnInit {
     public user = new UserModel();
     public errorNotification = '';
 
     @Output()
     public userStepOneDetails = new EventEmitter<UserModel>();
 
-    // First form group: 
+    //* First form group: 
     public initialInfo: FormGroup;
     public idNumberInput: FormControl;
     public usernameInput: FormControl;
@@ -68,7 +68,7 @@ export class RegisterStepOneComponent implements OnInit {
         this.user.password = this.passwordInput.value;
 
         const areUnique = await this.authService.checkValidEmailAndIdNumber(this.user);
-        
+
         if (areUnique) {
             this.userStepOneDetails.emit(this.user);
             this.errorNotification = '';
@@ -82,14 +82,14 @@ export class RegisterStepOneComponent implements OnInit {
 
         const inputElement = (e.target as HTMLInputElement);
         if (keyBoardEvent.key === 'Backspace' || keyBoardEvent.key === 'Delete') return;
-        
+
         if (inputElement.value.length === 3) {
             inputElement.value = inputElement.value + '-';
-        }
+        };
 
         if (inputElement.value.length === 7) {
             inputElement.value = inputElement.value + '-';
-        }
+        };
     }
 
     patternValidator(regexInput: string): ValidatorFn {
@@ -97,6 +97,7 @@ export class RegisterStepOneComponent implements OnInit {
             if (!control.value) {
                 return null;
             }
+
             const regex = new RegExp(regexInput);
             const valid = regex.test(control.value);
             this.errorNotification = '';
@@ -111,7 +112,7 @@ export class RegisterStepOneComponent implements OnInit {
 
             if (!passwordControl || !confirmPasswordControl) {
                 return null;
-            }
+            };
 
             if (passwordControl.value !== confirmPasswordControl.value) {
                 this.passwordConfirmInput.setErrors({ passwordMismatch: true });
@@ -129,7 +130,7 @@ export class RegisterStepOneComponent implements OnInit {
 
             if (!passwordControl || !confirmPasswordControl) {
                 return null;
-            }
+            };
 
             if (passwordControl.value !== confirmPasswordControl.value) {
                 return { passwordMismatch: true };

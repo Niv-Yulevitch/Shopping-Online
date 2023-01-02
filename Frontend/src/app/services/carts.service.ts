@@ -45,7 +45,7 @@ export class CartsService {
     async deleteAllItemsByCart(cartId: string): Promise<void> {
         const observable = this.http.delete(environment.cartItemsUrl + cartId);
         await firstValueFrom(observable);
-        
+
         const action: CartsAction = { type: CartsActionType.DeleteAllItemsFromCart };
         cartsStore.dispatch(action);
     };

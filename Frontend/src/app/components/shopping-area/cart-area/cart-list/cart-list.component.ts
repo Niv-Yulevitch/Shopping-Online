@@ -13,6 +13,7 @@ import { CartDialogComponent } from '../cart-dialog/cart-dialog.component';
     templateUrl: './cart-list.component.html',
     styleUrls: ['./cart-list.component.css']
 })
+
 export class CartListComponent implements OnInit, OnDestroy {
 
     public allItemsByCart: CartItemModel[];
@@ -29,27 +30,27 @@ export class CartListComponent implements OnInit, OnDestroy {
     async ngOnInit() {
         try {
             const cart = await this.cartsService.getCartByUser(authStore.getState().user._id);
-            this.allItemsByCart = await this.cartsService.getAllItemsByCart(cart?._id)
+            this.allItemsByCart = await this.cartsService.getAllItemsByCart(cart?._id);
             this.totalAmount = this.cartsService.getTotalCartAmount();
 
             this.allItemsByCartEvent.emit(this.allItemsByCart);
-      
+
             if (cartsStore.getState().cartItems.length > 0) {
                 this.openedTrigger = true;
                 this.openedChange.emit(this.openedTrigger);
             };
 
             if (cart?.isClosed) {
-              this.totalAmount = this.cartsService.getTotalCartAmount();
+                this.totalAmount = this.cartsService.getTotalCartAmount();
             };
-      
+
             this.unsubscribe = cartsStore.subscribe(() => {
-              this.allItemsByCart = cartsStore.getState().cartItems;
-              this.totalAmount = this.cartsService.getTotalCartAmount();
+                this.allItemsByCart = cartsStore.getState().cartItems;
+                this.totalAmount = this.cartsService.getTotalCartAmount();
             });
-          } catch (err: any) {
+        } catch (err: any) {
             this.notifyService.error(err);
-          }
+        }
     }
 
     async deleteAllItems() {
@@ -75,7 +76,8 @@ export class CartListComponent implements OnInit, OnDestroy {
         try {
             let dialogRef = this.dialog.open(CartDialogComponent, {
                 data: { action: 'remove' }
-            })
+            });
+            
             dialogRef.afterClosed().subscribe(async (result) => {
                 if (result === false || result === undefined) return;
 
@@ -86,7 +88,7 @@ export class CartListComponent implements OnInit, OnDestroy {
             this.notifyService.error(err);
         }
     }
-    
+
     ngOnDestroy(): void {
         if (this.unsubscribe) {
             this.unsubscribe();

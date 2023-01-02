@@ -21,8 +21,8 @@ const routes: Routes = [
     { path: 'admin-home', component: AdminHomeComponent, canActivate: [AdminGuard] },
     { path: 'admin/edit/:id', component: UpdateProductComponent, canActivate: [AdminGuard] },
 
-    { path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
-    
+    { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+
     { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "**", component: PageNotFoundComponent },
 ];

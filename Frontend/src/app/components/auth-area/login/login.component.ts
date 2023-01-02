@@ -17,6 +17,7 @@ import { OrdersService } from 'src/app/services/orders.service';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
 
     public credentials = new CredentialsModel();
@@ -76,8 +77,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     getLoggedInState() {
         if (!this.currentCart && this.user) {
-          return 'Start Shopping'
+            return 'Start Shopping'
         }
         return 'Resume Shopping'
-      }
+    }
 }

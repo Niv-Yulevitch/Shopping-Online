@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
     templateUrl: './cart-details.component.html',
     styleUrls: ['./cart-details.component.css']
 })
+
 export class CartDetailsComponent implements OnInit, OnDestroy {
 
     private unsubscribe: Unsubscribe;

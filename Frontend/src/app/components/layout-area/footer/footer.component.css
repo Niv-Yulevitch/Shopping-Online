@@ -28,6 +28,7 @@ a {
 
 @media screen and (min-width: 700px) {
     br {
-      display: none; /* hide the BR tag for wider screens (i.e. disable the line break) */
+        display: none;
+        /* hide the BR tag for wider screens (i.e. disable the line break) */
     }
-  }
+}

@@ -6,7 +6,8 @@
     grid-template-rows: 10% 85% 5%;
 }
 
-header, footer {
+header,
+footer {
     grid-column: span 6;
 }
 

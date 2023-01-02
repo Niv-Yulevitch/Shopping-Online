@@ -1,6 +1,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-        <app-cart-list [openedTrigger]="opened" (openedChange)="opened=$event" (allItemsByCartEvent)="allItemsByCart=$event"></app-cart-list>
+        <app-cart-list [openedTrigger]="opened" (openedChange)="opened=$event"
+            (allItemsByCartEvent)="allItemsByCart=$event"></app-cart-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="side-bar-action-button" (click)="opened = !opened">

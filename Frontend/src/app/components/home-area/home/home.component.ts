@@ -12,12 +12,12 @@ import { ProductsService } from 'src/app/services/products.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit, OnDestroy {
-
     public user: UserModel;
-    public unsubscribe: Unsubscribe;
+    private unsubscribe: Unsubscribe;
 
-    constructor(private productsService: ProductsService, private ordersService: OrdersService,private cartsService: CartsService, private notifyService: NotifyService) { }
+    constructor(private productsService: ProductsService, private ordersService: OrdersService, private cartsService: CartsService, private notifyService: NotifyService) { }
 
     ngOnInit(): void {
         try {

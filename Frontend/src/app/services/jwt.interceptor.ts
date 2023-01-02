@@ -8,13 +8,13 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-        // If we have a token: 
+        //* If we have a token: 
         if (authStore.getState().token) {
 
-            // Duplicate request object:
+            //* Duplicate request object:
             request = request.clone({
 
-                // Add jwt header to it: 
+                //* Add jwt header to it: 
                 setHeaders: {
                     authorization: "Bearer " + authStore.getState().token
                 }
@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
             });
         }
 
-        // next function to continue to the next interceptor:
+        //* next function to continue to the next interceptor:
         return next.handle(request);
     }
 

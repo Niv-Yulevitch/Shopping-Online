@@ -14,6 +14,7 @@ mat-card-title {
 .mat-card {
     background: rgba(249, 247, 247, 0.7);
     box-shadow: none;
+    cursor: auto;
 }
 
 .mat-card-header {

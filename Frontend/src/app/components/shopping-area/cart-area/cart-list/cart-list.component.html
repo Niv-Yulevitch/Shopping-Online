@@ -20,8 +20,8 @@
             <div class="checkout-btn" *ngIf="allItemsByCart?.length !== 0" routerLink="/order">
                 <mat-icon class="shopping-cart-icon">shopping_cart</mat-icon>Checkout
             </div>
-            <div *ngIf="allItemsByCart?.length !== 0" class="delete-all"
-                (click)="deleteAllItems()"><mat-icon class="delete-cart-icon">delete_forever</mat-icon>Empty Cart
+            <div *ngIf="allItemsByCart?.length !== 0" class="delete-all" (click)="deleteAllItems()"><mat-icon
+                    class="delete-cart-icon">delete_forever</mat-icon>Empty Cart
             </div>
         </div>
     </div>

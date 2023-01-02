@@ -39,53 +39,53 @@ import { AddProductComponent } from './components/admin-area/add-product/add-pro
 import { AdminHomeComponent } from './components/admin-area/admin-home/admin-home.component';
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    HeaderComponent,
-    HomeComponent,
-    FooterComponent,
-    PageNotFoundComponent,
-    AuthMenuComponent,
-    LogoutComponent,
-    AboutComponent,
-    SearchComponent,
-    ShoppingInfoComponent,
-    LoginComponent,
-    RegisterStepOneComponent,
-    RegisterStepTwoComponent,
-    RegisterBothStepsComponent,
-    ShoppingComponent,
-    CartListComponent,
-    ProductsListComponent,
-    ProductsCardComponent,
-    CategoriesListComponent,
-    CartDialogComponent,
-    CartDetailsComponent,
-    ProductDialogComponent,
-    HighlightSearchPipe,
-    OrderComponent,
-    OrderDialogComponent,
-    AddOrderComponent,
-    PdfReceiptComponent,
-    AddOrUpdateProductComponent,
-    UpdateProductComponent,
-    AddProductComponent,
-    AdminHomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
-  ],
-  providers: [{
-    useClass: JwtInterceptor,
-    provide: HTTP_INTERCEPTORS,
-    multi: true
-  }],
-  bootstrap: [LayoutComponent]
+    declarations: [
+        LayoutComponent,
+        HeaderComponent,
+        HomeComponent,
+        FooterComponent,
+        PageNotFoundComponent,
+        AuthMenuComponent,
+        LogoutComponent,
+        AboutComponent,
+        SearchComponent,
+        ShoppingInfoComponent,
+        LoginComponent,
+        RegisterStepOneComponent,
+        RegisterStepTwoComponent,
+        RegisterBothStepsComponent,
+        ShoppingComponent,
+        CartListComponent,
+        ProductsListComponent,
+        ProductsCardComponent,
+        CategoriesListComponent,
+        CartDialogComponent,
+        CartDetailsComponent,
+        ProductDialogComponent,
+        HighlightSearchPipe,
+        OrderComponent,
+        OrderDialogComponent,
+        AddOrderComponent,
+        PdfReceiptComponent,
+        AddOrUpdateProductComponent,
+        UpdateProductComponent,
+        AddProductComponent,
+        AdminHomeComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule
+    ],
+    providers: [{
+        useClass: JwtInterceptor,
+        provide: HTTP_INTERCEPTORS,
+        multi: true
+    }],
+    bootstrap: [LayoutComponent]
 })
 export class AppModule { }
