@@ -12,7 +12,7 @@ Import database files from the folder "Database" to your MongoDB.
 ## Download and Install:
 1. Download my project and cd into it using the following commands:
 ```
-git clone https://github.com/Niv-Yulevitch/shopping-online.git
+git clone https://github.com/Niv-Yulevitch/Shopping-Online.git
 cd shopping-online
 ```
 2. Install required node modules for the Backend and the Frontend using the following commands:
