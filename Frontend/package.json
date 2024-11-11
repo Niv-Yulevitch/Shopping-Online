@@ -6,8 +6,7 @@
     "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "check-cli-version": "ng version"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
