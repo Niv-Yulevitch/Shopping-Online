@@ -18,7 +18,7 @@ import sanitize from "./3-middleware/sanitize";
 
 const server = express();
 
-server.use(cors({ origin: ['http://localhost:3001', 'http://localhost:4200'] }));
+server.use(cors({ origin: ['http://localhost:3001', 'http://localhost:4200', 'https://niv-shopping-online.netlify.app'] }));
 
 server.use("/api/", expressRateLimit({
     windowMs: 1000,
